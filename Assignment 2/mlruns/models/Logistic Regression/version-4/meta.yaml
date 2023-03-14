@@ -1,0 +1,12 @@
+creation_timestamp: 1678792259149
+current_stage: None
+description: null
+last_updated_timestamp: 1678792259149
+name: Logistic Regression
+run_id: f76a4e3603b84878a3d32a4373ba154a
+run_link: null
+source: file:///c:/Users/lenovo/Desktop/Fourth%20Sem/AML/Assignment%202/mlruns/0/f76a4e3603b84878a3d32a4373ba154a/artifacts/sklearn-model
+status: READY
+status_message: null
+user_id: null
+version: 4

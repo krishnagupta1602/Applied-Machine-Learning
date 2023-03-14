@@ -1,0 +1,15 @@
+artifact_uri: file:///c:/Users/lenovo/Desktop/Fourth%20Sem/AML/Assignment%202/mlruns/0/4d8a1a06d58c4d6cb056e8e996db97cd/artifacts
+end_time: 1678792419175
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 4d8a1a06d58c4d6cb056e8e996db97cd
+run_name: 'Model : Support Vector Classifier, C : 100'
+run_uuid: 4d8a1a06d58c4d6cb056e8e996db97cd
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1678792399899
+status: 3
+tags: []
+user_id: lenovo
