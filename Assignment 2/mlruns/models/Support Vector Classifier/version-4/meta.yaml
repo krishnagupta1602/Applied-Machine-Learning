@@ -1,0 +1,12 @@
+creation_timestamp: 1679397909160
+current_stage: None
+description: null
+last_updated_timestamp: 1679397909160
+name: Support Vector Classifier
+run_id: 311406a5973c4fd99ef30805a2950ef7
+run_link: null
+source: file:///c:/Users/lenovo/Desktop/Fourth%20Sem/AML/Applied-Machine-Learning/Assignment%202/mlruns/0/311406a5973c4fd99ef30805a2950ef7/artifacts/sklearn-model
+status: READY
+status_message: null
+user_id: null
+version: 4

@@ -1,0 +1,15 @@
+artifact_uri: file:///c:/Users/lenovo/Desktop/Fourth%20Sem/AML/Applied-Machine-Learning/Assignment%202/mlruns/0/af2cf279d32d42efb6b651e4dfaa2438/artifacts
+end_time: 1679397805549
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: af2cf279d32d42efb6b651e4dfaa2438
+run_name: 'Model : Logistic Regression, C : 10'
+run_uuid: af2cf279d32d42efb6b651e4dfaa2438
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1679397792572
+status: 3
+tags: []
+user_id: lenovo

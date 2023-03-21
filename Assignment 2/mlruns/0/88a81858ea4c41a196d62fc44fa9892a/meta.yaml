@@ -1,0 +1,15 @@
+artifact_uri: file:///c:/Users/lenovo/Desktop/Fourth%20Sem/AML/Applied-Machine-Learning/Assignment%202/mlruns/0/88a81858ea4c41a196d62fc44fa9892a/artifacts
+end_time: 1679397517045
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 88a81858ea4c41a196d62fc44fa9892a
+run_name: 'Model : Multinomial Naive Bayes, Alpha : 0.3'
+run_uuid: 88a81858ea4c41a196d62fc44fa9892a
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1679397505512
+status: 3
+tags: []
+user_id: lenovo
