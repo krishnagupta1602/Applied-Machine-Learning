@@ -138,3 +138,77 @@ def plot_topic_word_frequencies(word_frequencies, no_top_words):
         plt.show()
 
 plot_topic_word_frequencies(word_frequencies, no_top_words)
+
+
+import pandas as pd
+from sklearn.feature_extraction.text import CountVectorizer
+from sklearn.decomposition import LatentDirichletAllocation
+from sklearn.metrics.pairwise import cosine_similarity
+import nltk
+from nltk.corpus import stopwords
+import re
+import matplotlib.pyplot as plt
+import numpy as np
+from sklearn.manifold import MDS
+
+# Download stopwords if not already done
+nltk.download('stopwords')
+stop_words = set(stopwords.words('english'))
+
+# Function to preprocess the text
+def preprocess(text):
+    # Remove non-alphabetic characters and convert to lowercase
+    text = re.sub('[^a-zA-Z]', ' ', text)
+    text = text.lower()
+    # Remove stopwords
+    text = ' '.join([word for word in text.split() if word not in stop_words])
+    return text
+
+# Sample data
+df = pd.DataFrame({
+    'text': [
+        'The cat in the hat disabled the hat.',
+        'The hat is a good cat.',
+        'Dogs are friendly animals.',
+        'Cats and dogs are not friends.',
+        'The quick brown fox jumps over the lazy dog.'
+    ]
+})
+df['processed_text'] = df['text'].apply(preprocess)
+
+# Initialize the CountVectorizer
+vectorizer = CountVectorizer(max_df=0.95, min_df=2, stop_words='english')
+dtm = vectorizer.fit_transform(df['processed_text'])
+
+# Initialize LDA
+lda = LatentDirichletAllocation(n_components=2, random_state=0, max_iter=10)
+
+# Fit the LDA model
+lda.fit(dtm)
+
+# Get the topic-word distributions
+topic_word_distributions = lda.components_
+
+# Calculate cosine similarity between topics
+topic_similarity = cosine_similarity(topic_word_distributions)
+
+print("Cosine Similarity Between Topics:")
+print(topic_similarity)
+
+# Use MDS to visualize the distance between topics
+mds = MDS(n_components=2, dissimilarity="precomputed", random_state=0)
+topic_distances = 1 - topic_similarity
+pos = mds.fit_transform(topic_distances)
+
+# Plot the topics in 2D space
+plt.figure(figsize=(10, 6))
+plt.scatter(pos[:, 0], pos[:, 1], marker='o')
+
+for i in range(len(pos)):
+    plt.text(pos[i, 0], pos[i, 1], f'Topic {i}', fontsize=12)
+
+plt.xlabel('MDS Dimension 1')
+plt.ylabel('MDS Dimension 2')
+plt.title('Topic Distance Visualization using MDS')
+plt.show()
+
