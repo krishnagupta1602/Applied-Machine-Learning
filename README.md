@@ -107,3 +107,34 @@ plot_topic_word_frequencies(topics)
 
 
 https://github.com/sethns/Latent-Dirichlet-Allocation-LDA-/blob/main/Topic%20Modeling%20_%20Extracting%20Topics_%20Using%20Sklearn.ipynb 
+
+def get_word_frequencies(dtm, topic_assignments, feature_names, n_topics):
+    word_freq = {i: {} for i in range(n_topics)}
+    for doc_idx, topic in enumerate(topic_assignments):
+        feature_index = dtm[doc_idx, :].nonzero()[1]
+        tfidf_scores = zip(feature_index, [dtm[doc_idx, x] for x in feature_index])
+        for word_idx, score in tfidf_scores:
+            word = feature_names[word_idx]
+            if word in word_freq[topic]:
+                word_freq[topic][word] += score
+            else:
+                word_freq[topic][word] = score
+    return word_freq
+
+# Calculate word frequencies for each topic
+word_frequencies = get_word_frequencies(dtm, df['topic'], tf_feature_names, lda.n_components)
+
+# Plot bar graphs for each topic based on word frequencies
+def plot_topic_word_frequencies(word_frequencies, no_top_words):
+    for topic_idx, freqs in word_frequencies.items():
+        sorted_words = sorted(freqs.items(), key=lambda x: x[1], reverse=True)[:no_top_words]
+        words, frequencies = zip(*sorted_words)
+        plt.figure(figsize=(10, 6))
+        plt.bar(words, frequencies, color='blue')
+        plt.xlabel('Words')
+        plt.ylabel('Frequencies')
+        plt.title(f'Topic {topic_idx} Top Words')
+        plt.xticks(rotation=45)
+        plt.show()
+
+plot_topic_word_frequencies(word_frequencies, no_top_words)
