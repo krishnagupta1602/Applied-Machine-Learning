@@ -83,6 +83,8 @@ for topic, words in topics.items():
 # Transform the data to get the topic distribution for each document
 topic_distribution = lda.transform(dtm)
 
+
+https://github.com/sethns/Latent-Dirichlet-Allocation-LDA-/blob/main/Topic%20Modeling%20_%20Extracting%20Topics_%20Using%20Sklearn.ipynb 
 # Assign each document to the topic with the highest probability
 df['topic'] = topic_distribution.argmax(axis=1)
 
