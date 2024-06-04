@@ -84,9 +84,26 @@ for topic, words in topics.items():
 topic_distribution = lda.transform(dtm)
 
 
-https://github.com/sethns/Latent-Dirichlet-Allocation-LDA-/blob/main/Topic%20Modeling%20_%20Extracting%20Topics_%20Using%20Sklearn.ipynb 
 # Assign each document to the topic with the highest probability
 df['topic'] = topic_distribution.argmax(axis=1)
 
 # Print the topic assignments
 print(df[['text', 'processed_text', 'topic']])
+
+
+
+def plot_topic_word_frequencies(topics):
+    for topic_idx, words in topics.items():
+        words_list, frequencies = zip(*words)
+        plt.figure(figsize=(10, 6))
+        plt.bar(words_list, frequencies, color='blue')
+        plt.xlabel('Words')
+        plt.ylabel('Frequencies')
+        plt.title(f'Topic {topic_idx} Top Words')
+        plt.xticks(rotation=45)
+        plt.show()
+
+plot_topic_word_frequencies(topics)
+
+
+https://github.com/sethns/Latent-Dirichlet-Allocation-LDA-/blob/main/Topic%20Modeling%20_%20Extracting%20Topics_%20Using%20Sklearn.ipynb 
