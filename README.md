@@ -207,8 +207,45 @@ plt.scatter(pos[:, 0], pos[:, 1], marker='o')
 for i in range(len(pos)):
     plt.text(pos[i, 0], pos[i, 1], f'Topic {i}', fontsize=12)
 
+    
+
 plt.xlabel('MDS Dimension 1')
 plt.ylabel('MDS Dimension 2')
 plt.title('Topic Distance Visualization using MDS')
+
+def calculate_coherence_score(model, texts, dictionary):
+    coherence_model = CoherenceModel(model=model, texts=texts, dictionary=dictionary, coherence='c_v')
+    return coherence_model.get_coherence()
+topic_numbers = range(2, 11)
+coherence_scores = []
+perplexities = []
+
+for n_topics in topic_numbers:
+    lda = LatentDirichletAllocation(n_components=n_topics, random_state=0, max_iter=10)
+    lda.fit(dtm)
+    
+    # Calculate coherence score
+    coherence_scores.append(calculate_coherence_score(lda, processed_texts, dictionary))
+    
+    # Calculate perplexity
+    perplexities.append(lda.perplexity(dtm))
+
+# Plot coherence score and perplexity
+plt.figure(figsize=(12, 6))
+plt.subplot(1, 2, 1)
+plt.plot(topic_numbers, coherence_scores, marker='o')
+plt.xlabel('Number of Topics')
+plt.ylabel('Coherence Score')
+plt.title('Coherence Score by Number of Topics')
+
+plt.subplot(1, 2, 2)
+plt.plot(topic_numbers, perplexities, marker='o')
+plt.xlabel('Number of Topics')
+plt.ylabel('Perplexity')
+plt.title('Perplexity by Number of Topics')
+
+plt.tight_layout()
+plt.show()
+
 plt.show()
 
