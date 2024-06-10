@@ -249,3 +249,23 @@ plt.show()
 
 plt.show()
 
+topic_word_distributions = lda.components_
+
+# Normalize the topic-word distributions to get probabilities
+topic_word_distributions /= topic_word_distributions.sum(axis=1)[:, np.newaxis]
+
+# Calculate pairwise distances between topics
+distances = pairwise_distances(topic_word_distributions, metric='euclidean')
+
+# Calculate the stress
+# Stress is typically calculated using the formula:
+# stress = sqrt(sum((d_ij - d_ij')^2) / sum(d_ij^2))
+# where d_ij are the original distances and d_ij' are the distances in the lower-dimensional space
+
+# For simplicity, we use the distances directly without transforming to lower-dimensional space
+stress = np.sqrt(np.sum((distances - np.mean(distances))**2) / np.sum(distances**2))
+
+print("Distances between topics:")
+print(distances)
+
+print(f"Stress: {stress}")
