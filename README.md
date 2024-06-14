@@ -270,16 +270,16 @@ print(distances)
 
 print(f"Stress: {stress}")
 
-
 import re
 
 # Input list
 input_list = ['abcd', '\n"Default rate" means an annual 4% points']
 
 # Regex pattern to match 'Default rate' and capture the text following it
-pattern = r'.*Default rate.*? (.+?)$'
+pattern = r'Default rate.*? (.+)'
 
 # Extract the match
-matches = [re.match(pattern, item).group(1) for item in input_list if re.match(pattern, item)]
+matches = [re.search(pattern, item, re.DOTALL).group(1) for item in input_list if re.search(pattern, item, re.DOTALL)]
 
 print(matches)  # Output: ['means an annual 4% points']
+
