@@ -269,3 +269,17 @@ print("Distances between topics:")
 print(distances)
 
 print(f"Stress: {stress}")
+
+
+import re
+
+# Input list
+input_list = ['Pro name: ABC DEF']
+
+# Regex pattern to match 'Pro name: ABC' and capture 'ABC'
+pattern = r'Pro name: (ABC)'
+
+# Extract the match
+matches = [re.match(pattern, item).group(1) for item in input_list if re.match(pattern, item)]
+
+print(matches)  # Output: ['ABC']
