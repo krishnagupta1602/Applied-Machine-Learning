@@ -274,12 +274,13 @@ print(f"Stress: {stress}")
 import re
 
 # Input list
-input_list = ['Pro name: ABC DEF']
+input_list = ['abcd', '"Default rate" means an annual 4% points']
 
-# Regex pattern to match 'Pro name: ' followed by any characters
-pattern = r'Pro name: (.*)'
+# Regex pattern to match 'Default rate' followed by any characters
+pattern = r'.*Default rate" (.*)'
 
 # Extract the match
 matches = [re.match(pattern, item).group(1) for item in input_list if re.match(pattern, item)]
 
-print(matches)  # Output: ['ABC DEF']
+print(matches)  # Output: ['means an annual 4% points']
+
