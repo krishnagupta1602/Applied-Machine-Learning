@@ -280,3 +280,11 @@ combined_string = ' '.join(item.replace('\n', '') for item in input_list)
 result = [combined_string]
 
 print(result)  # Output: ['ab c d']
+
+import re
+
+text = 'i menas one'
+pattern = r'\bmenas\b'
+
+result = re.sub(pattern, '', text).strip()
+print(result)
