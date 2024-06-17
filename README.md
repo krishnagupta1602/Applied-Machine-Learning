@@ -288,3 +288,16 @@ pattern = r'\bmenas\b'
 
 result = re.sub(pattern, '', text).strip()
 print(result)
+
+import re
+
+text = 'The term "payment" means the amount due.'
+
+# Define the regex pattern
+pattern = r'"payment" means (.+)'
+
+# Use re.search to find the pattern in the text
+match = re.search(pattern, text)
+if match:
+    print(match.group(1))
+    
