@@ -312,3 +312,15 @@ pattern = r'"payment" means (.+)'
 matches = [re.search(pattern, text).group(1) for text in text_list if re.search(pattern, text)]
 
 print(matches)
+
+import re
+
+text_list = ['int is 2.99%', 'tax rate is 5.5%', 'growth was 12%']
+
+# Define the regex pattern to match a percentage value
+pattern = r'\b\d+(\.\d+)?%'
+
+# Use list comprehension to apply the regex and capture the desired text
+matches = [re.search(pattern, text).group() for text in text_list if re.search(pattern, text)]
+
+print(matches)
