@@ -1,4 +1,4 @@
-import pandas as pd
+timport pandas as pd
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.decomposition import LatentDirichletAllocation
 import nltk
@@ -300,4 +300,15 @@ pattern = r'"payment" means (.+)'
 match = re.search(pattern, text)
 if match:
     print(match.group(1))
-    
+
+import re
+
+text_list = ['The term "payment" means the amount due.', 'Hi this is us']
+
+# Define the regex pattern
+pattern = r'"payment" means (.+)'
+
+# Use list comprehension to apply the regex and capture the desired text
+matches = [re.search(pattern, text).group(1) for text in text_list if re.search(pattern, text)]
+
+print(matches)
