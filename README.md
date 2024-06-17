@@ -324,3 +324,14 @@ pattern = r'\b\d+(\.\d+)?%'
 matches = [re.search(pattern, text).group() for text in text_list if re.search(pattern, text)]
 
 print(matches)
+import re
+
+text_list = ['The term "payment" means the amount due.', 'Hi this us']
+
+# Define the regex pattern
+pattern = r'.*?"payment" means .+'
+
+# Use list comprehension to find matches
+matches = [match.group() for text in text_list for match in [re.search(pattern, text)] if match]
+
+print(matches)
