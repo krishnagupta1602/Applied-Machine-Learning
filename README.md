@@ -335,3 +335,18 @@ pattern = r'.*?"payment" means .+'
 matches = [match.group() for text in text_list for match in [re.search(pattern, text)] if match]
 
 print(matches)
+
+
+import re
+
+# List of strings
+l = ['abc', 'abc $200']
+
+# Regular expression pattern to match dollar amounts
+pattern = r'\$\d+'
+
+# Find strings containing a dollar amount
+matching_strings = [s for s in l if re.search(pattern, s)]
+
+# Output the result
+print(matching_strings)
