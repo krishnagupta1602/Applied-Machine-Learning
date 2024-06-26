@@ -350,3 +350,44 @@ matching_strings = [s for s in l if re.search(pattern, s)]
 
 # Output the result
 print(matching_strings)
+
+
+import pdfplumber
+
+def split_text_at_bold(pdf_path):
+    split_texts = []
+    current_text = ""
+    last_bold = False
+
+    with pdfplumber.open(pdf_path) as pdf:
+        for page in pdf.pages:
+            # Extract characters with their font info
+            chars = page.chars
+            
+            for char in chars:
+                is_bold = 'Bold' in char['fontname']
+                if is_bold:
+                    if not last_bold and current_text:
+                        split_texts.append(current_text.strip())
+                        current_text = ""
+                    current_text += char['text']
+                    last_bold = True
+                else:
+                    if last_bold and current_text:
+                        split_texts.append(current_text.strip())
+                        current_text = ""
+                    current_text += char['text']
+                    last_bold = False
+
+            if current_text:  # Append any remaining text after the last character
+                split_texts.append(current_text.strip())
+                current_text = ""
+
+    return split_texts
+
+# Example usage
+pdf_path = "your_pdf_file.pdf"
+split_texts = split_text_at_bold(pdf_path)
+for part in split_texts:
+    print(part)
+    print("---")
