@@ -391,3 +391,73 @@ split_texts = split_text_at_bold(pdf_path)
 for part in split_texts:
     print(part)
     print("---")
+
+
+from google.cloud import speech_v1p1beta1 as speech
+import io
+import azure.cognitiveservices.speech as speechsdk
+import json
+from ibm_watson import SpeechToTextV1
+from ibm_cloud_sdk_core.authenticators import IAMAuthenticator
+
+
+
+import requests
+
+def assemblyai_wav_to_text(wav_file_path):
+    api_key = "YourAssemblyAIKey"
+    headers = {"authorization": api_key}
+
+    upload_url = "https://api.assemblyai.com/v2/upload"
+    with open(wav_file_path, "rb") as f:
+        response = requests.post(upload_url, headers=headers, files={"file": f})
+    audio_url = response.json()["upload_url"]
+
+    transcript_request = {
+        "audio_url": audio_url
+    }
+    transcript_url = "https://api.assemblyai.com/v2/transcript"
+    transcript_response = requests.post(transcript_url, json=transcript_request, headers=headers)
+    transcript_id = transcript_response.json()["id"]
+
+    transcript_result_url = f"https://api.assemblyai.com/v2/transcript/{transcript_id}"
+    while True:
+        result_response = requests.get(transcript_result_url, headers=headers)
+        result = result_response.json()
+        if result["status"] == "completed":
+            print(f"Recognized Text: {result['text']}")
+            break
+        elif result["status"] == "failed":
+            print("Transcription failed")
+            break
+
+wav_file_path = "path/to/your/file.wav"
+assemblyai_wav_to_text(wav_file_path)
+
+
+
+
+
+
+
+import deepspeech
+import wave
+import numpy as np
+
+def deepspeech_wav_to_text(wav_file_path):
+    model_path = 'path/to/deepspeech/model.pbmm'
+    scorer_path = 'path/to/deepspeech/scorer.scorer'
+    
+    model = deepspeech.Model(model_path)
+    model.enableExternalScorer(scorer_path)
+
+    with wave.open(wav_file_path, 'rb') as wf:
+        frames = wf.getnframes()
+        buffer = wf.readframes(frames)
+        data16 = np.frombuffer(buffer, dtype=np.int16)
+
+    text = model.stt(data16)
+    print(f"Recognized Text: {text}")
+
+wav_file_path = "path/to/your/file.wav"
+deepspeech_wav_to_text(wav_file_path)
