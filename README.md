@@ -542,3 +542,76 @@ Nuance Mix
 Kaldi Online GMM and NNet3 Chain models
 Eesen End-to-End Speech Recognition
 Voxpopuli
+
+
+import numpy as np
+import tensorflow as tf
+import gensim
+from gensim.models import Word2Vec
+from sklearn.feature_extraction.text import CountVectorizer
+
+# Preprocess the text data
+def preprocess_text(texts):
+    # Tokenize the text
+    tokenized_texts = [gensim.utils.simple_preprocess(text) for text in texts]
+    return tokenized_texts
+
+# Train word2vec embeddings
+def train_word2vec(tokenized_texts):
+    model = Word2Vec(sentences=tokenized_texts, vector_size=100, window=5, min_count=1, workers=4)
+    return model
+
+# Create a vocabulary and document-term matrix
+def create_vocabulary(tokenized_texts):
+    vectorizer = CountVectorizer(tokenizer=lambda doc: doc, lowercase=False)
+    dt_matrix = vectorizer.fit_transform(tokenized_texts)
+    vocab = vectorizer.get_feature_names_out()
+    return dt_matrix, vocab
+
+# Initialize LDA model
+def initialize_lda(dt_matrix, num_topics):
+    lda = gensim.models.LdaModel(corpus=[[(i, int(count)) for i, count in enumerate(doc)] for doc in dt_matrix.toarray()],
+                                 num_topics=num_topics,
+                                 id2word=dict(enumerate(vocab)),
+                                 passes=10)
+    return lda
+
+# Combine word2vec and LDA
+class Lda2Vec:
+    def __init__(self, word2vec_model, lda_model, num_topics):
+        self.word2vec_model = word2vec_model
+        self.lda_model = lda_model
+        self.num_topics = num_topics
+
+    def fit(self, tokenized_texts, epochs=10):
+        for epoch in range(epochs):
+            # Optimize the model parameters
+            # Update the topic and word vectors
+            pass
+
+    def get_topics(self):
+        topics = []
+        for i in range(self.num_topics):
+            topics.append(self.lda_model.show_topic(i))
+        return topics
+
+# Example usage
+texts = [
+    "Natural language processing is a field of artificial intelligence",
+    "Machine learning can be applied to natural language processing",
+    "Deep learning models are used in many AI applications",
+    "AI and machine learning are closely related fields"
+]
+
+tokenized_texts = preprocess_text(texts)
+word2vec_model = train_word2vec(tokenized_texts)
+dt_matrix, vocab = create_vocabulary(tokenized_texts)
+lda_model = initialize_lda(dt_matrix, num_topics=2)
+
+lda2vec_model = Lda2Vec(word2vec_model, lda_model, num_topics=2)
+lda2vec_model.fit(tokenized_texts)
+
+topics = lda2vec_model.get_topics()
+for i, topic in enumerate(topics):
+    print(f"Topic {i}: {topic}")
+    
