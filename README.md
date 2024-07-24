@@ -614,4 +614,29 @@ lda2vec_model.fit(tokenized_texts)
 topics = lda2vec_model.get_topics()
 for i, topic in enumerate(topics):
     print(f"Topic {i}: {topic}")
-    
+
+
+import pandas as pd
+from openpyxl import load_workbook
+
+# Load the workbook and the specific sheet
+file_path = 'your_file.xlsx'
+sheet_name = 'xyz'
+workbook = load_workbook(filename=file_path, data_only=True)
+sheet = workbook[sheet_name]
+
+# Initialize an empty dictionary to store the data
+data = {}
+
+# Iterate over the columns
+for col in sheet.iter_cols(values_only=True):
+    # The first value in the column is the header
+    header = col[0]
+    # The rest are the data values
+    data[header] = list(col[1:])
+
+# Convert the dictionary to a DataFrame
+df = pd.DataFrame(data)
+
+# Print the DataFrame
+print(df)
