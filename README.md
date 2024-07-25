@@ -640,3 +640,13 @@ df = pd.DataFrame(data)
 
 # Print the DataFrame
 print(df)
+
+@echo off
+REM Optional: Activate the Anaconda environment
+call C:\Users\YourUsername\Anaconda3\Scripts\activate.bat base
+
+REM Change directory to where your Python script is located
+cd C:\path\to\your\script
+
+REM Run the Python script
+python your_script.py
