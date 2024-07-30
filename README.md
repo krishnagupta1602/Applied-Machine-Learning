@@ -654,3 +654,20 @@ python your_script.py
 
 sorted_items = sorted(count_dict.items(), key=lambda item: item[1], reverse=True)
 top_2_words = [item[0] for item in sorted_items[:2]]
+
+# Input string
+text = "I am an aspiring analyst currently studying"
+
+# List of words to keep
+words_to_keep = ["analyst", "studying"]
+
+# Split the string into words
+words = text.split()
+
+# Filter words that are in the words_to_keep list
+filtered_words = [word for word in words if word in words_to_keep]
+
+# Join the filtered words back into a string
+result = ' '.join(filtered_words)
+
+print(result)
