@@ -650,3 +650,7 @@ cd C:\path\to\your\script
 
 REM Run the Python script
 python your_script.py
+
+
+sorted_items = sorted(count_dict.items(), key=lambda item: item[1], reverse=True)
+top_2_words = [item[0] for item in sorted_items[:2]]
