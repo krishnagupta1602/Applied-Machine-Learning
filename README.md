@@ -1,3 +1,37 @@
+import fitz  # PyMuPDF
+from PIL import Image
+import pytesseract
+
+def detect_tables_with_ocr(pdf_path):
+    doc = fitz.open(pdf_path)
+    for page_num in range(len(doc)):
+        page = doc[page_num]
+        # Use get_pixmap() if you have a newer version of PyMuPDF, or get_image() if it's older.
+        # Adjust the code according to the version.
+        try:
+            # For newer versions of PyMuPDF
+            pix = page.get_pixmap()
+        except AttributeError:
+            # For older versions of PyMuPDF
+            pix = page.get_image()  # `get_image()` was the older method
+
+        img = Image.frombytes("RGB", [pix.width, pix.height], pix.samples)
+        
+        text = pytesseract.image_to_string(img)
+        if "table" in text.lower():
+            print(f"Potential table detected on page {page_num + 1}")
+            return True
+    return False
+
+pdf_path = "your_pdf_file.pdf"  # Replace with your PDF file path
+if detect_tables_with_ocr(pdf_path):
+    print("The PDF contains tables (detected via OCR).")
+else:
+    print("No tables found in the PDF (via OCR).")
+    
+
+
+
 timport pandas as pd
 
 lfrom sklearn.feature_extraction.text import TfidfVectorizer
