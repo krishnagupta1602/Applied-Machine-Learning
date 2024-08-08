@@ -28,7 +28,7 @@ if detect_tables_with_ocr(pdf_path):
     print("The PDF contains tables (detected via OCR).")
 else:
     print("No tables found in the PDF (via OCR).")
-    
+
 
 
 
