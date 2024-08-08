@@ -750,7 +750,43 @@ def detect_tables_with_ocr(pdf_path):
     doc = fitz.open(pdf_path)
     for page_num in range(len(doc)):
         page = doc[page_num]  # Access the page directly by its index
+        pix = page.get_pixmap(
+
+
+
+
+
+
+
+      import fitz  # PyMuPDF
+from PIL import Image
+import pytesseract
+import io
+
+def detect_tables_with_ocr(pdf_path):
+    doc = fitz.open(pdf_path)
+    if len(doc) > 0:  # Ensure the document has at least one page
+        page = doc[0]  # Get the first page
         pix = page.get_pixmap()
+        img = Image.open(io.BytesIO(pix.tobytes()))  # Convert the pixmap to an image
+
+        text = pytesseract.image_to_string(img)
+        if "table" in text.lower():
+            print("Potential table detected on the first page.")
+            return True
+        else:
+            print("No table detected on the first page.")
+            return False
+    else:
+        print("The PDF has no pages.")
+        return False
+
+pdf_path = "your_pdf_file.pdf"  # Replace with your PDF file path
+if detect_tables_with_ocr(pdf_path):
+    print("The PDF contains tables (detected via OCR).")
+else:
+    print("No tables found in the PDF (via OCR).")
+    
         img = Image.frombytes("RGB", [pix.width, pix.height], pix.samples)
         
         text = pytesseract.image_to_string(img)
@@ -792,6 +828,40 @@ def detect_tables_with_ocr(pdf_path):
             print(f"Potential table detected on page {page_num + 1}")
             return True
     return False
+
+pdf_path = "your_pdf_file.pdf"  # Replace with your PDF file path
+if detect_tables_with_ocr(pdf_path):
+    print("The PDF contains tables (detected via OCR).")
+else:
+    print("No tables found in the PDF (via OCR).")
+
+
+
+
+
+
+import fitz  # PyMuPDF
+from PIL import Image
+import pytesseract
+import io
+
+def detect_tables_with_ocr(pdf_path):
+    doc = fitz.open(pdf_path)
+    if len(doc) > 0:  # Ensure the document has at least one page
+        page = doc[0]  # Get the first page
+        pix = page.get_pixmap()
+        img = Image.open(io.BytesIO(pix.tobytes()))  # Convert the pixmap to an image
+
+        text = pytesseract.image_to_string(img)
+        if "table" in text.lower():
+            print("Potential table detected on the first page.")
+            return True
+        else:
+            print("No table detected on the first page.")
+            return False
+    else:
+        print("The PDF has no pages.")
+        return False
 
 pdf_path = "your_pdf_file.pdf"  # Replace with your PDF file path
 if detect_tables_with_ocr(pdf_path):
