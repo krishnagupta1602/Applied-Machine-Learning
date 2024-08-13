@@ -1,3 +1,26 @@
+from pathlib import Path
+import json
+
+# Get the directory of the current script (main.py)
+current_directory = Path(__file__).resolve().parent
+
+# Find the parent directory (where config.json is located)
+parent_directory = current_directory.parent
+
+# Construct the path to config.json
+config_path = parent_directory / "config.json"
+
+# Load the JSON configuration file
+with open(config_path, 'r') as config_file:
+    config = json.load(config_file)
+
+# Example usage of the config
+print(config)
+
+
+
+
+
 import logging
 import one
 import two
