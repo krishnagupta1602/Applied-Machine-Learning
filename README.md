@@ -1,3 +1,58 @@
+import logging
+import one
+import two
+import three
+
+# Configure the logger
+logging.basicConfig(
+    level=logging.ERROR,  # Set logging level to ERROR
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+    handlers=[
+        logging.FileHandler("app.log"),  # Logs to a file named "app.log"
+        logging.StreamHandler()  # Also logs to the console
+    ]
+)
+
+logger = logging.getLogger(__name__)
+
+def main():
+    try:
+        one.function_one()
+    except Exception as e:
+        logger.error("Error in module one", exc_info=True)
+
+    try:
+        two.function_two()
+    except Exception as e:
+        logger.error("Error in module two", exc_info=True)
+
+    try:
+        three.function_three()
+    except Exception as e:
+        logger.error("Error in module three", exc_info=True)
+
+if __name__ == "__main__":
+    main()
+
+
+one.py****
+
+import logging
+
+logger = logging.getLogger(__name__)
+
+def function_one():
+    try:
+        # Your code here
+        raise ValueError("An error occurred in one.py")  # Example error
+    except Exception as e:
+        logger.error("Error in function_one", exc_info=True)
+        raise
+
+    
+
+
+
 import fitz  # PyMuPDF
 from PIL import Image
 import pytesseract
