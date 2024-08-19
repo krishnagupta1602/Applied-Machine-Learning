@@ -1,3 +1,6 @@
+set PATH=C:\Python310;%PATH:OldPythonPath;=%
+
+
 set PATH=%PATH%;C:\Python310
 
 
