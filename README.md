@@ -1,3 +1,6 @@
+set PATH=%PATH%;C:\Python310
+
+
 from pathlib import Path
 import json
 
