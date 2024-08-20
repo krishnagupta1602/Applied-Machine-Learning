@@ -1,3 +1,13 @@
+# Filter df5 for rows where 'days' column is greater than 100
+filtered_df5 = df5[df5["days"] > 100]
+
+# Concatenate the filtered df5 to the final_result DataFrame
+final_result = pd.concat([final_result, filtered_df5]).reset_index(drop=True)
+
+# final_result now contains the updated DataFrame with the additional rows from df5
+
+
+
 import pandas as pd
 
 # Assuming df1, df2, df3, df4, df5 are your DataFrames
