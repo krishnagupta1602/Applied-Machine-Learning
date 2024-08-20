@@ -1,3 +1,45 @@
+# Define the bin edges
+bins = [0, 100, 500, float('inf')]  # float('inf') means "above 500"
+
+# Define the corresponding labels
+labels = ['low', 'high', 'very high']
+
+# Create a new column with bucketed data
+df['amount_category'] = pd.cut(df['amounts'], bins=bins, labels=labels, right=False)
+
+# Display the updated DataFrame
+print(df)
+
+
+
+
+
+
+
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Sample DataFrame
+data = {
+    'amounts': [100, 150, 200, 150, 100, 200, 300, 100, 200, 300, 400, 500]
+}
+df = pd.DataFrame(data)
+
+# Plot histogram
+plt.figure(figsize=(10, 6))
+plt.hist(df['amounts'], bins=10, edgecolor='black')
+plt.xlabel('Amounts')
+plt.ylabel('Frequency')
+plt.title('Histogram of Amounts')
+plt.grid(True, linestyle='--', alpha=0.7)
+plt.show()
+
+
+
+
+
+
+
 # Filter df5 for rows where 'days' column is greater than 100
 filtered_df5 = df5[df5["days"] > 100]
 
