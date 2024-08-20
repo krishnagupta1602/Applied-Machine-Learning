@@ -1,3 +1,33 @@
+# Dictionary to store recall scores for each feature
+feature_recall = {}
+
+# Perform cross-validation for the model with all features
+baseline_scores = cross_val_score(model, X, y, cv=5, scoring='recall')
+baseline_recall = np.mean(baseline_scores)
+print(f"Baseline Recall with all features: {baseline_recall}")
+
+# Iterate over each feature to drop it and evaluate recall
+for feature in X.columns:
+    # Drop the feature
+    X_temp = X.drop(columns=[feature])
+
+    # Perform cross-validation
+    scores = cross_val_score(model, X_temp, y, cv=5, scoring='recall')
+
+    # Store the average recall score
+    feature_recall[feature] = np.mean(scores)
+    print(f"Recall without {feature}: {feature_recall[feature]}")
+
+# Convert the dictionary to a DataFrame for easier analysis
+recall_drop_df = pd.DataFrame.from_dict(feature_recall, orient='index', columns=['Recall'])
+recall_drop_df['Drop in Recall'] = baseline_recall - recall_drop_df['Recall']
+recall_drop_df.sort_values(by='Drop in Recall', ascending=False, inplace=True)
+
+print("\nImpact of Dropping Each Feature on Recall:")
+print(recall_drop_df)
+
+
+
 import pandas as pd
 
 # Sample DataFrame
