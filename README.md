@@ -1,3 +1,27 @@
+import pandas as pd
+
+# Assuming df1, df2, df3, df4, df5 are your DataFrames
+dfs = [df1, df2, df3, df4, df5]
+
+# Start with an empty list to hold the results
+result_dfs = []
+
+# Iterate through pairs of consecutive DataFrames
+for i in range(len(dfs) - 1):
+    # Perform a set difference based on "Item Id"
+    diff_df = dfs[i][~dfs[i]["Item Id"].isin(dfs[i + 1]["Item Id"])]
+    result_dfs.append(diff_df)
+
+# Combine the results into one DataFrame
+final_result = pd.concat(result_dfs).reset_index(drop=True)
+
+# final_result now contains the rows which are in 1 but not 2, 2 but not 3, and so on
+
+
+
+
+
+
 set PATH=C:\Python310;%PATH:OldPythonPath;=%
 
 
