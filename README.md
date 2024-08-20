@@ -1,3 +1,38 @@
+import pandas as pd
+
+# Sample DataFrame
+data = {
+    'amounts': [50, 150, 200, 600, 350, 80, 10, 500, 700, 90]
+}
+df = pd.DataFrame(data)
+
+# Calculate the thresholds
+top_25_threshold = df['amounts'].quantile(0.75)
+bottom_2_threshold = df['amounts'].quantile(0.02)
+
+# Define the conditions for labeling
+conditions = [
+    (df['amounts'] >= top_25_threshold),    # Top 25%
+    (df['amounts'] <= bottom_2_threshold),  # Bottom 2%
+]
+
+# Define the corresponding labels
+labels = ['high', 'low']
+
+# Apply the conditions and create the new column
+df['amount_category'] = pd.cut(df['amounts'],
+                               bins=[-float('inf'), bottom_2_threshold, top_25_threshold, float('inf')],
+                               labels=['low', 'normal', 'high'])
+
+# Display the updated DataFrame
+print(df)
+
+
+
+
+
+
+
 # Define the bin edges
 bins = [0, 100, 500, float('inf')]  # float('inf') means "above 500"
 
