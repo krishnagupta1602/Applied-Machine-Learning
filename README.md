@@ -1,3 +1,14 @@
+import pandas as pd
+
+feature_importances = pd.DataFrame({
+    'Feature': X.columns,
+    'Importance': model.feature_importances_
+}).sort_values(by='Importance', ascending=False)
+
+print(feature_importances)
+
+
+
 # Dictionary to store recall scores for each feature
 feature_recall = {}
 
