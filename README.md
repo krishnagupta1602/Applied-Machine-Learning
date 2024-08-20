@@ -12,7 +12,7 @@ bottom_2_threshold = df['amounts'].quantile(0.02)
 
 # Define the conditions for labeling
 conditions = [
-    (df['amounts'] >= top_25_threshold),    # Top 25%
+    (df['amounts'] >= top_25_threshold),    # Top 25
     (df['amounts'] <= bottom_2_threshold),  # Bottom 2%
 ]
 
