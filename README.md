@@ -1,3 +1,34 @@
+
+from bs4 import BeautifulSoup
+
+# Load the HTML file
+with open('your_html_file.html', 'r', encoding='utf-8') as file:
+    html_content = file.read()
+
+# Parse the HTML content with BeautifulSoup
+soup = BeautifulSoup(html_content, 'html.parser')
+
+# Find all tables in the HTML
+tables = soup.find_all('table')
+
+# Select the third table (index 2 since it's 0-based)
+if len(tables) >= 3:
+    third_table = tables[2]
+
+    # Extract rows and columns from the table
+    rows = third_table.find_all('tr')
+    for row in rows:
+        columns = row.find_all(['td', 'th'])  # Find all columns (both td and th)
+        column_data = [column.text.strip() for column in columns]  # Extract text from each column
+        print(column_data)  # Print or store the data
+else:
+    print("The HTML file does not contain 3 tables.")
+
+
+
+
+
+
 import os
 import requests
 from bs4 import BeautifulSoup
