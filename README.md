@@ -1,3 +1,47 @@
+import requests
+from bs4 import BeautifulSoup
+import pandas as pd
+
+# Step 1: Fetch the webpage
+url = 'https://example.com/page-with-table'  # Replace with the URL of the webpage
+response = requests.get(url)
+
+# Check if the request was successful
+if response.status_code == 200:
+    print("Successfully fetched the webpage!")
+    # Step 2: Parse the webpage content
+    soup = BeautifulSoup(response.content, 'html.parser')
+
+    # Step 3: Find the table
+    table = soup.find('table')  # Adjust the selector if the table has a specific id or class
+
+    # Step 4: Extract the headers (optional)
+    headers = []
+    for th in table.find_all('th'):
+        headers.append(th.text.strip())
+
+    # Step 5: Extract the rows
+    rows = []
+    for tr in table.find_all('tr'):
+        cells = tr.find_all(['td', 'th'])
+        row = [cell.text.strip() for cell in cells]
+        rows.append(row)
+
+    # Step 6: Create a DataFrame
+    if headers:
+        df = pd.DataFrame(rows[1:], columns=headers)  # Assuming first row is header
+    else:
+        df = pd.DataFrame(rows)
+
+    # Step 7: Display or save the DataFrame
+    print(df)
+    df.to_csv('output.csv', index=False)  # Optionally save to a CSV file
+else:
+    print(f"Failed to fetch the webpage. Status code: {response.status_code}")
+    
+
+
+
 import pandas as pd
 
 feature_importances = pd.DataFrame({
