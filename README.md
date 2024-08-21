@@ -1,3 +1,49 @@
+import os
+import requests
+from bs4 import BeautifulSoup
+import pandas as pd
+
+# Step 1: Read the local HTML file
+file_path = 'path/to/your/file.html'  # Replace with the path to your HTML file
+
+# Ensure the file exists
+if os.path.exists(file_path):
+    with open(file_path, 'r', encoding='utf-8') as file:
+        content = file.read()
+else:
+    print(f"File not found: {file_path}")
+    exit()
+
+# Step 2: Parse the HTML content
+soup = BeautifulSoup(content, 'html.parser')
+
+# Step 3: Find the table
+table = soup.find('table')  # Adjust the selector if the table has a specific id or class
+
+# Step 4: Extract the headers (optional)
+headers = []
+for th in table.find_all('th'):
+    headers.append(th.text.strip())
+
+# Step 5: Extract the rows
+rows = []
+for tr in table.find_all('tr'):
+    cells = tr.find_all(['td', 'th'])
+    row = [cell.text.strip() for cell in cells]
+    rows.append(row)
+
+# Step 6: Create a DataFrame
+if headers:
+    df = pd.DataFrame(rows[1:], columns=headers)  # Assuming first row is header
+else:
+    df = pd.DataFrame(rows)
+
+# Step 7: Display or save the DataFrame
+print(df)
+df.to_csv('output.csv', index=False)  # Optionally save to a CSV file
+
+
+
 import requests
 from bs4 import BeautifulSoup
 import pandas as pd
