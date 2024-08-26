@@ -1,3 +1,32 @@
+import pandas as pd
+import os
+
+# Sample DataFrame
+data = {
+    'A': [1, 2, 3, 4],
+    'B': [10, 20, 30, 40],
+    'C': [100, 200, 300, 400]
+}
+
+df = pd.DataFrame(data)
+
+# Define the output folder and file name
+output_folder = 'output'  # Specify the folder where you want to save the pickle file
+output_filename = 'my_dataframe.pkl'
+
+# Ensure the output folder exists
+os.makedirs(output_folder, exist_ok=True)
+
+# Construct the full path for the pickle file
+output_path = os.path.join(output_folder, output_filename)
+
+# Save the DataFrame to a pickle file
+df.to_pickle(output_path)
+
+print(f"DataFrame saved to {output_path}")
+
+
+
 
 from bs4 import BeautifulSoup
 
