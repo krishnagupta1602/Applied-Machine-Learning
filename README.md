@@ -1,3 +1,23 @@
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Example data
+amounts = np.array([100, 200, 300, 400, 500, 1000])
+
+# Sort the data
+sorted_data = np.sort(amounts)
+rank = np.arange(1, len(sorted_data) + 1)
+
+# Log-log plot
+plt.figure(figsize=(8, 6))
+plt.loglog(sorted_data, rank, marker='o', linestyle='none')
+plt.xlabel('Amount')
+plt.ylabel('Rank')
+plt.title('Log-Log Plot')
+plt.show()
+
+
+
 import pandas as pd
 
 # Assuming df is your DataFrame and 'category_column' is the categorical column
