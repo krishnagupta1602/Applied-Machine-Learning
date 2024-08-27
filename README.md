@@ -1,30 +1,20 @@
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
-from sklearn.cluster import KMeans
+import seaborn as sns
 
 # Generate an example DataFrame with 5 lakh positive amounts
 np.random.seed(42)
 data = {'amounts': np.random.lognormal(mean=5, sigma=1.5, size=500000)}
 df = pd.DataFrame(data)
 
-# Optional: Log-transform the data if the range is extremely large
-df['log_amounts'] = np.log(df['amounts'])
-
-# Apply K-means clustering
-n_clusters = 5  # You can choose the number of clusters
-kmeans = KMeans(n_clusters=n_clusters, random_state=42)
-df['cluster'] = kmeans.fit_predict(df[['log_amounts']])
-
-# Plot the clusters
+# Plotting the Probability Density Function using KDE
 plt.figure(figsize=(10, 6))
-plt.scatter(df['log_amounts'], df['cluster'], c=df['cluster'], cmap='viridis', alpha=0.6)
-plt.colorbar(label='Cluster')
-plt.xlabel('Log of Amounts')
-plt.ylabel('Cluster')
-plt.title('Cluster Plot of Amounts')
+sns.kdeplot(df['amounts'], bw_adjust=0.5)  # Adjust `bw_adjust` for smoother or rougher curves
+plt.xlabel('Amount')
+plt.ylabel('Density')
+plt.title('Probability Density Function of Amounts')
 plt.show()
-
 
 
 import numpy as np
