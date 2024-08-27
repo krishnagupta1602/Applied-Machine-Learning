@@ -1,3 +1,75 @@
+import pandas as pd
+from catboost import CatBoostClassifier, Pool
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import accuracy_score
+
+# Example data creation
+data = pd.DataFrame({
+    'feature1': ['A', 'B', 'C', 'A', 'B'],
+    'feature2': ['X', 'Y', 'X', 'Y', 'X'],
+    'feature3': ['L', 'M', 'L', 'L', 'M'],
+    'feature4': ['D', 'E', 'D', 'E', 'D'],
+    'feature5': ['1', '2', '1', '2', '1'],
+    'feature6': ['W', 'W', 'Z', 'Z', 'W'],
+    'feature7': ['K', 'K', 'L', 'L', 'K'],
+    'feature8': ['U', 'U', 'U', 'U', 'V'],
+    'feature9': ['P', 'Q', 'P', 'Q', 'Q'],
+    'target': [0, 1, 2, 0, 1]  # Example target categories
+})
+
+# Define features and target
+X = data.drop('target', axis=1)
+y = data['target']
+
+# Convert categorical columns to type 'category'
+for col in X.columns:
+    X[col] = X[col].astype('category')
+
+# Split the data
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)
+# Initialize CatBoostClassifier
+model = CatBoostClassifier(
+    iterations=1000,
+    learning_rate=0.1,
+    depth=6,
+    loss_function='MultiClass',  # Use 'MultiClass' for multi-class classification
+    cat_features=list(X.columns)  # List of categorical features
+)
+
+# Fit the model
+model.fit(X_train, y_train)
+
+# Make predictions
+y_pred = model.predict(X_test)
+
+# Evaluate accuracy
+accuracy = accuracy_score(y_test, y_pred)
+print(f'Accuracy: {accuracy:.4f}')
+importances = model.get_feature_importance()
+features = X.columns
+
+# Create a DataFrame to view feature importance
+importances_df = pd.DataFrame({
+    'Feature': features,
+    'Importance': importances
+}).sort_values(by='Importance', ascending=False)
+
+print(importances_df)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
