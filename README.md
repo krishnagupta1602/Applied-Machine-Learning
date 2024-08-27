@@ -1,4 +1,17 @@
 import pandas as pd
+
+# Assuming df is your DataFrame and 'category_column' is the categorical column
+category_counts = df['category_column'].value_counts(normalize=True) * 100
+
+# Sort the percentages in descending order
+category_distribution = category_counts.sort_values(ascending=False)
+
+print(category_distribution)
+
+
+
+
+import pandas as pd
 import os
 
 # Sample DataFrame
