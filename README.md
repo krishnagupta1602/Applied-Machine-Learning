@@ -1,3 +1,28 @@
+from catboost import CatBoostClassifier
+from sklearn.datasets import make_classification
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import classification_report
+
+# Generate a sample dataset
+X, y = make_classification(n_samples=1000, n_features=20, n_classes=2, weights=[0.3, 0.7], random_state=42)
+
+# Split the dataset into training and testing sets
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)
+
+# Assign class weights to improve recall (higher weight to the minority class)
+class_weights = {0: 1, 1: 5}
+
+# Initialize and train the CatBoostClassifier with class weights
+clf = CatBoostClassifier(class_weights=class_weights, random_state=42, verbose=0)
+clf.fit(X_train, y_train)
+
+# Predict on the test set
+y_pred = clf.predict(X_test)
+
+# Display classification report
+print(classification_report(y_test, y_pred))
+
+
 
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.datasets import make_classification
