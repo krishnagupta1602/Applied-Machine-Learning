@@ -1,3 +1,19 @@
+
+import pandas as pd
+
+# Sample DataFrame
+data = {'std': [5, 10, 7, 12],
+        'days': [7, 8, 6, 12]}
+df = pd.DataFrame(data)
+
+# Create a new column 'policy_violation'
+df['policy_violation'] = df.apply(lambda row: 'yes' if row['std'] < row['days'] else 'no', axis=1)
+
+# Display the DataFrame
+print(df)
+
+
+
 import pandas as pd
 from catboost import CatBoostClassifier, Pool
 from sklearn.model_selection import train_test_split
