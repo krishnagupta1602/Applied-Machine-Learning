@@ -1,3 +1,42 @@
+import numpy as np
+import seaborn as sns
+import matplotlib.pyplot as plt
+from sklearn.metrics import confusion_matrix
+from sklearn.datasets import make_classification
+from sklearn.model_selection import train_test_split
+from sklearn.tree import DecisionTreeClassifier
+
+# Generate a sample dataset
+X, y = make_classification(n_samples=1000, n_features=20, n_classes=2, weights=[0.9, 0.1], random_state=42)
+
+# Split the dataset into training and testing sets
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)
+
+# Train a DecisionTreeClassifier
+clf = DecisionTreeClassifier(random_state=42)
+clf.fit(X_train, y_train)
+
+# Predict on the test set
+y_pred = clf.predict(X_test)
+
+# Compute the confusion matrix
+cm = confusion_matrix(y_test, y_pred)
+
+# Normalize the confusion matrix
+cm_normalized = cm.astype('float') / cm.sum(axis=1)[:, np.newaxis]
+
+# Plot the normalized confusion matrix with an improved color map
+plt.figure(figsize=(8, 6))
+sns.heatmap(cm_normalized, annot=True, fmt=".2f", cmap="Blues", cbar=False, xticklabels=['Class 0', 'Class 1'], yticklabels=['Class 0', 'Class 1'])
+plt.xlabel('Predicted Label')
+plt.ylabel('True Label')
+plt.title('Normalized Confusion Matrix')
+plt.show()
+
+
+
+
+
 from catboost import CatBoostClassifier
 from sklearn.datasets import make_classification
 from sklearn.model_selection import train_test_split
