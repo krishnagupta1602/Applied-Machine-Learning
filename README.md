@@ -1,4 +1,59 @@
+from transformers import GPT2Tokenizer, GPT2LMHeadModel, Trainer, TrainingArguments
+from datasets import load_dataset
 
+# Load GPT-2 model and tokenizer
+tokenizer = GPT2Tokenizer.from_pretrained('gpt2')
+model = GPT2LMHeadModel.from_pretrained('gpt2')
+
+# Prepare the dataset
+train_data = {"input_texts": call_transcripts, "labels": summaries}
+
+# Tokenize the dataset
+def preprocess_function(examples):
+    inputs = examples['input_texts']
+    labels = examples['labels']
+    
+    # Tokenize inputs and labels
+    model_inputs = tokenizer(inputs, max_length=512, truncation=True)
+    with tokenizer.as_target_tokenizer():
+        labels = tokenizer(labels, max_length=64, truncation=True)
+
+    model_inputs["labels"] = labels["input_ids"]
+    return model_inputs
+
+# Tokenize the data
+tokenized_data = train_data.map(preprocess_function, batched=True)
+
+# Training Arguments
+training_args = TrainingArguments(
+    output_dir='./results',
+    per_device_train_batch_size=4,
+    per_device_eval_batch_size=4,
+    num_train_epochs=3,
+    evaluation_strategy="epoch",
+    save_steps=10_000,
+    save_total_limit=2,
+)
+
+# Trainer
+trainer = Trainer(
+    model=model,
+    args=training_args,
+    train_dataset=tokenized_data["train"],
+    eval_dataset=tokenized_data["test"],
+)
+
+# Train the model
+trainer.train()
+
+
+input_text = "Customer asked about the status of their refund..."
+input_ids = tokenizer(input_text, return_tensors="pt").input_ids
+
+# Generate summary
+generated_ids = model.generate(input_ids, max_length=50)
+summary = tokenizer.decode(generated_ids[0], skip_special_tokens=True)
+print(summary)
 import numpy as np
 from transformers import XLNetTokenizer, XLNetForSequenceClassification, Trainer, TrainingArguments
 from datasets import load_dataset
