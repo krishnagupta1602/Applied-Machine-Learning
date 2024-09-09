@@ -1,3 +1,67 @@
+
+import numpy as np
+from transformers import XLNetTokenizer, XLNetForSequenceClassification, Trainer, TrainingArguments
+from datasets import load_dataset
+
+# Load pre-trained XLNet model and tokenizer
+model_name = "xlnet-base-cased"
+tokenizer = XLNetTokenizer.from_pretrained(model_name)
+model = XLNetForSequenceClassification.from_pretrained(model_name, num_labels=2)
+
+# Load and preprocess dataset (assuming CSV files with 'text' and 'label' columns)
+dataset = load_dataset('csv', data_files={'train': 'train.csv', 'test': 'test.csv'}, delimiter=',')
+
+def preprocess_function(examples):
+    return tokenizer(examples['text'], truncation=True, padding='max_length', max_length=128)
+
+tokenized_datasets = dataset.map(preprocess_function, batched=True)
+
+# Define training arguments
+training_args = TrainingArguments(
+    output_dir='./results',
+    num_train_epochs=3,
+    per_device_train_batch_size=8,
+    per_device_eval_batch_size=8,
+    warmup_steps=500,
+    weight_decay=0.01,
+    logging_dir='./logs',
+    logging_steps=10,
+)
+
+# Initialize Trainer
+trainer = Trainer(
+    model=model,
+    args=training_args,
+    train_dataset=tokenized_datasets['train'],
+    eval_dataset=tokenized_datasets['test'],
+)
+
+# Train the model
+trainer.train()
+
+# Evaluate the model
+results = trainer.evaluate()
+print("Evaluation results:", results)
+
+# Function to extract summary
+def extract_summary(sentences, model, tokenizer):
+    inputs = tokenizer(sentences, truncation=True, padding=True, return_tensors="pt", max_length=128)
+    outputs = model(**inputs)
+    predictions = outputs.logits.argmax(axis=1).tolist()
+    summary = ' '.join([sent for sent, pred in zip(sentences, predictions) if pred == 1])
+    return summary
+
+# Example sentences
+sentences = ["This is a sentence.", "This is another sentence."]
+summary = extract_summary(sentences, model, tokenizer)
+print("Extracted summary:", summary)
+
+
+
+
+
+
+
 import numpy as np
 import seaborn as sns
 import matplotlib.pyplot as plt
