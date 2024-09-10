@@ -1,3 +1,127 @@
+# Required Libraries
+import torch
+from transformers import BertTokenizer, BertModel
+import nltk
+from sklearn.model_selection import train_test_split
+from sklearn.svm import SVC
+from sklearn.metrics import accuracy_score, classification_report
+
+# Download necessary NLTK data
+nltk.download('punkt')
+
+# Load Pre-trained BERT Tokenizer and Model (base-cased)
+tokenizer = BertTokenizer.from_pretrained('bert-base-cased')
+model = BertModel.from_pretrained('bert-base-cased')
+model.eval()  # Set model to evaluation mode
+
+# Function to split text into sentences
+def split_into_sentences(text):
+    sentences = nltk.sent_tokenize(text)
+    return sentences
+
+# Function to get BERT embeddings for a sentence
+def get_bert_embeddings(text):
+    inputs = tokenizer(text, return_tensors='pt', max_length=512, truncation=True, padding=True)
+    with torch.no_grad():
+        outputs = model(**inputs)
+    # Use [CLS] token's embedding as the sentence embedding
+    cls_embedding = outputs.last_hidden_state[:, 0, :].squeeze()
+    return cls_embedding.numpy()
+
+# Function to get embeddings for all sentences in a call
+def get_bert_embeddings_for_sentences(text):
+    sentences = split_into_sentences(text)
+    embeddings = []
+    for sentence in sentences:
+        embedding = get_bert_embeddings(sentence)
+        embeddings.append(embedding)
+    return sentences, embeddings
+
+# Function to label sentences with binary labels (1 if in summary, 0 otherwise)
+def label_sentences(sentences, summary):
+    labels = []
+    for sentence in sentences:
+        if sentence in summary:  # A basic matching condition; refine as needed
+            labels.append(1)
+        else:
+            labels.append(0)
+    return labels
+
+# Example dataset: List of calls and their corresponding summaries
+calls = [
+    "Customer called regarding a billing issue and then asked about the service upgrade.",
+    "Customer requested a refund for a recent purchase and discussed previous complaints."
+]
+
+summaries = [
+    "billing issue",  # Summary for the first call
+    "requested a refund"  # Summary for the second call
+]
+
+# Preparing the data for training
+all_embeddings = []
+all_labels = []
+
+for call, summary in zip(calls, summaries):
+    sentences, embeddings = get_bert_embeddings_for_sentences(call)
+    labels = label_sentences(sentences, summary)
+    all_embeddings.extend(embeddings)
+    all_labels.extend(labels)
+
+# Train-test split
+X_train, X_test, y_train, y_test = train_test_split(all_embeddings, all_labels, test_size=0.2, random_state=42)
+
+# Train SVM classifier
+clf = SVC(kernel='linear')
+clf.fit(X_train, y_train)
+
+# Prediction and evaluation
+y_pred = clf.predict(X_test)
+print("Accuracy:", accuracy_score(y_test, y_pred))
+print(classification_report(y_test, y_pred))
+
+# Inference: Summarizing a new call
+def summarize_call(text):
+    sentences, embeddings = get_bert_embeddings_for_sentences(text)
+    predictions = clf.predict(embeddings)
+    
+    summary = []
+    for sentence, pred in zip(sentences, predictions):
+        if pred == 1:
+            summary.append(sentence)
+    
+    return " ".join(summary)
+
+# Testing with a new call
+new_call = "Customer asked about a refund for a recent purchase. Then they mentioned an issue with a previous order."
+summary = summarize_call(new_call)
+print("Extracted Summary:", summary)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 from transformers import GPT2Tokenizer, GPT2LMHeadModel, Trainer, TrainingArguments
 from datasets import load_dataset
 
