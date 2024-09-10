@@ -1,3 +1,71 @@
+
+from transformers import BertTokenizer, BertModel
+import torch
+import numpy as np
+from sklearn.metrics.pairwise import cosine_similarity
+
+# Load pre-trained BERT base-cased model and tokenizer
+tokenizer = BertTokenizer.from_pretrained('bert-base-cased')
+model = BertModel.from_pretrained('bert-base-cased')
+
+# Function to get the BERT embeddings for a sentence
+def get_sentence_embedding(sentence):
+    inputs = tokenizer(sentence, return_tensors='pt', truncation=True, padding=True, max_length=512)
+    with torch.no_grad():
+        outputs = model(**inputs)
+    # Taking the mean of the last hidden states to represent the sentence embedding
+    sentence_embedding = outputs.last_hidden_state.mean(dim=1).squeeze().numpy()
+    return sentence_embedding
+
+# Function to calculate cosine similarity between two vectors
+def cosine_sim(vec1, vec2):
+    return cosine_similarity([vec1], [vec2])[0][0]
+
+# Function to extract the most similar sentence based on cosine similarity
+def extractive_summary(article_sentences, summary_sentences):
+    summary_embeddings = [get_sentence_embedding(sent) for sent in summary_sentences]
+    
+    # Store total cosine similarity scores for each article sentence
+    sentence_scores = []
+    
+    for article_sentence in article_sentences:
+        article_embedding = get_sentence_embedding(article_sentence)
+        total_similarity_score = 0
+        
+        # Sum cosine similarity of the article sentence with all summary sentences
+        for summary_embedding in summary_embeddings:
+            total_similarity_score += cosine_sim(article_embedding, summary_embedding)
+        
+        sentence_scores.append(total_similarity_score)
+    
+    # Pick the article sentence with the highest score
+    most_similar_sentence_index = np.argmax(sentence_scores)
+    return article_sentences[most_similar_sentence_index]
+
+# Example usage:
+# Article sentences and summary sentences for the first article
+article_sentences = [
+    "This is the first sentence of the article.",
+    "This is the second sentence of the article.",
+    # add all 10 sentences here
+]
+
+summary_sentences = [
+    "This is the first sentence of the summary.",
+    "This is the second sentence of the summary.",
+    # add all summary sentences here
+]
+
+# Extractive summary
+summary_sentence = extractive_summary(article_sentences, summary_sentences)
+print("Extractive Summary:", summary_sentence)
+
+
+
+
+
+
+
 # Required Libraries
 import torch
 from transformers import BertTokenizer, BertModel
