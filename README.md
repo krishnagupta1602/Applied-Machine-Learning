@@ -1,3 +1,27 @@
+import numpy as np
+
+# Sample score list
+scores = [10, 25, 50, 75, 100, 5, 20, 90, 60, 80, 30, 55, 85]
+
+# 1. Compute the mean of the score list
+mean_score = np.mean(scores)
+
+# 2. Filter the scores to keep only values greater than the mean
+filtered_indices = np.where(np.array(scores) > mean_score)[0]
+
+# 3. Get the top 10 maximum elements' indices of the filtered values
+top_10_indices_filtered = np.argsort(np.array(scores)[filtered_indices])[-10:]
+
+# 4. Map these indices back to the original indices
+top_10_indices = filtered_indices[top_10_indices_filtered]
+
+# Print the result
+print("Indices of the top 10 elements greater than the mean:", top_10_indices)
+
+
+
+
+
 
 from transformers import BertTokenizer, BertModel
 import torch
