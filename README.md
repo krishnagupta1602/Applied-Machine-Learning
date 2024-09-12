@@ -1,3 +1,18 @@
+pos_weights = {
+    'NN': 1.0,   # Noun, singular or mass
+    'NNS': 1.0,  # Noun, plural
+    'NNP': 1.0,  # Proper noun, singular
+    'NNPS': 1.0, # Proper noun, plural
+    'JJ': 1.0,   # Adjective
+    'VB': 1.0,   # Verb, base form
+    'VBD': 1.0,  # Verb, past tense
+    'VBG': 1.0,  # Verb, gerund or present participle
+    'VBN': 1.0,  # Verb, past participle
+    'VBP': 1.0,  # Verb, non-3rd person singular present
+    'VBZ': 1.0   # Verb, 3rd person singular present
+}
+
+
 # Calculate POS tag weighted score
 def calculate_pos_tag_score(sentence):
     tokens = word_tokenize(sentence)
