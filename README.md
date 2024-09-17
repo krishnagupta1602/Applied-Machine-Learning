@@ -1,4 +1,49 @@
 from sklearn.feature_extraction.text import TfidfVectorizer
+import pandas as pd
+
+# Sample corpus
+corpus = [
+    "This is the first sentence.",
+    "This sentence is about natural language processing.",
+    "We are learning how to rank sentences using TF-IDF.",
+    "TF-IDF stands for Term Frequency-Inverse Document Frequency."
+]
+
+# Initialize the TF-IDF vectorizer with sublinear_tf to reduce the impact of sentence length
+vectorizer = TfidfVectorizer(sublinear_tf=True, norm='l2')
+
+# Fit and transform the corpus to compute TF-IDF scores
+tfidf_matrix = vectorizer.fit_transform(corpus)
+
+# Get feature names (terms)
+feature_names = vectorizer.get_feature_names_out()
+
+# Convert the TF-IDF matrix to a DataFrame for a better view
+tfidf_df = pd.DataFrame(tfidf_matrix.toarray(), columns=feature_names)
+
+# Calculate sentence importance by summing TF-IDF scores for each sentence
+sentence_scores = tfidf_df.sum(axis=1)
+
+# Rank sentences by their importance scores
+ranked_indices = sentence_scores.argsort()[::-1]
+ranked_sentences = [corpus[i] for i in ranked_indices]
+
+# Display the TF-IDF matrix and ranked sentences
+print("TF-IDF Matrix:")
+print(tfidf_df)
+print("\nRanked Sentences by Importance:")
+for rank, sentence in enumerate(ranked_sentences, 1):
+    print(f"{rank}: {sentence}")
+    
+
+
+
+
+
+
+
+
+from sklearn.feature_extraction.text import TfidfVectorizer
 import numpy as np
 
 # Sample corpus with multiple sentences
