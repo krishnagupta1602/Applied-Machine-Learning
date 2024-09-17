@@ -1,4 +1,65 @@
 from sklearn.feature_extraction.text import TfidfVectorizer
+import numpy as np
+import pandas as pd
+
+# Sample corpus
+corpus = [
+    "This is the first sentence.",
+    "This sentence is about natural language processing.",
+    "We are learning how to rank sentences using TF-IDF.",
+    "TF-IDF stands for Term Frequency-Inverse Document Frequency."
+]
+
+# Custom TF-IDF Vectorizer using augmented frequency
+class AugmentedTfidfVectorizer(TfidfVectorizer):
+    def _count_terms(self, raw_documents):
+        """Custom count method to apply augmented frequency."""
+        X = super().fit_transform(raw_documents)
+        X = X.toarray()
+        
+        # Apply augmented frequency (tf / max_tf in each document)
+        for i in range(X.shape[0]):
+            max_freq = X[i].max()
+            if max_freq > 0:  # Avoid division by zero
+                X[i] = X[i] / max_freq
+        
+        return X
+
+# Initialize custom augmented TF-IDF vectorizer
+vectorizer = AugmentedTfidfVectorizer()
+
+# Fit and transform the corpus to compute TF-IDF scores using augmented frequency
+tfidf_matrix = vectorizer.fit_transform(corpus)
+
+# Get feature names (terms)
+feature_names = vectorizer.get_feature_names_out()
+
+# Convert the TF-IDF matrix to a DataFrame for a better view
+tfidf_df = pd.DataFrame(tfidf_matrix, columns=feature_names)
+
+# Calculate sentence importance by summing TF-IDF scores for each sentence
+sentence_scores = tfidf_df.sum(axis=1)
+
+# Rank sentences by their importance scores
+ranked_indices = sentence_scores.argsort()[::-1]
+ranked_sentences = [corpus[i] for i in ranked_indices]
+
+# Display the TF-IDF matrix and ranked sentences
+print("TF-IDF Matrix (using augmented frequency):")
+print(tfidf_df)
+print("\nRanked Sentences by Importance:")
+for rank, sentence in enumerate(ranked_sentences, 1):
+    print(f"{rank}: {sentence}")
+    
+
+
+
+
+
+
+
+
+from sklearn.feature_extraction.text import TfidfVectorizer
 import pandas as pd
 
 # Sample corpus
