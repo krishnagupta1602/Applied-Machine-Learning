@@ -1,3 +1,12 @@
+import re
+
+text = "Find 123 in this, also look for numbers like 456,789, or even in-text 101dalmatians."
+numbers = re.findall(r'\b\d+\b', text)
+print(numbers)
+
+
+
+
 from sklearn.feature_extraction.text import TfidfVectorizer
 import numpy as np
 import pandas as pd
