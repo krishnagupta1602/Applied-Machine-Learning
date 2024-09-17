@@ -1,3 +1,64 @@
+def tokenize(text):
+    """
+    Tokenizes the input text into a set of words.
+    Converts to lowercase and splits by whitespace.
+    """
+    return set(text.lower().split())
+
+def jaccard_similarity(set1, set2):
+    """
+    Computes the Jaccard similarity between two sets.
+    """
+    intersection = set1.intersection(set2)
+    union = set1.union(set2)
+    if not union:
+        return 0.0
+    return len(intersection) / len(union)
+
+def calculate_jaccard_similarity(sentences, summary):
+    """
+    Calculate the Jaccard similarity between each sentence and the summary.
+
+    Parameters:
+    - sentences: A list of sentence strings.
+    - summary: A summary string.
+
+    Returns:
+    - A list of Jaccard similarity scores, where each score is the similarity of a sentence to the summary.
+    """
+    summary_tokens = tokenize(summary)
+    similarities = []
+
+    for sentence in sentences:
+        sentence_tokens = tokenize(sentence)
+        similarity = jaccard_similarity(sentence_tokens, summary_tokens)
+        similarities.append(similarity)
+
+    return similarities
+
+# Example usage:
+sentences = [
+    "This is the first sentence.",
+    "Here is another sentence.",
+    "This sentence is similar to the summary.",
+    "An unrelated sentence.",
+    "Completely different from the summary.",
+    "The summary and this sentence have some words in common.",
+    "Totally irrelevant sentence.",
+    "This sentence might be somewhat related.",
+    "A completely unrelated statement.",
+    "Here we have a different statement altogether."
+]
+
+summary = "This is a summary that somewhat relates to the first few sentences."
+
+scores = calculate_jaccard_similarity(sentences, summary)
+print(scores)
+
+
+
+
+
 import re
 
 text = "Find 123 in this, also look for numbers like 456,789, or even in-text 101dalmatians."
