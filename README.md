@@ -1,3 +1,44 @@
+
+
+
+
+
+
+from sklearn.feature_extraction.text import TfidfVectorizer
+import numpy as np
+
+# Sample corpus with multiple sentences
+corpus = [
+    "This is the first sentence.",
+    "This sentence is about natural language processing.",
+    "We are learning how to rank sentences using TF-IDF.",
+    "TF-IDF stands for Term Frequency-Inverse Document Frequency."
+]
+
+# Initialize the TF-IDF vectorizer
+vectorizer = TfidfVectorizer()
+
+# Fit and transform the corpus to compute TF-IDF scores
+tfidf_matrix = vectorizer.fit_transform(corpus).toarray()
+
+# Calculate the length-normalized TF-IDF score for each sentence
+sentence_scores = np.sum(tfidf_matrix, axis=1) / np.count_nonzero(tfidf_matrix, axis=1)
+
+# Rank sentences by their normalized scores
+ranked_sentences = [corpus[i] for i in np.argsort(-sentence_scores)]
+
+# Display ranked sentences
+print("Ranked sentences:")
+for rank, sentence in enumerate(ranked_sentences, 1):
+    print(f"{rank}: {sentence}")
+    
+
+
+
+
+
+
+
 def tokenize(text):
     """
     Tokenizes the input text into a set of words.
