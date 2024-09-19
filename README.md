@@ -28,39 +28,6 @@ print(df)
 
 
 
-import pandas as pd
-
-# Sample DataFrame creation (assuming the column names 'ID', 'firm_quantity', 'client_quantity', etc.)
-data = {
-    'ID': ['A', 'A', 'A', 'B', 'B', 'C', 'C', 'C'],
-    'firm_quantity': [10, 20, 30, 0, 0, 5, 15, 0],
-    'client_quantity': [60, 60, 60, 0, 0, 20, 20, 20],
-    # ... other columns ...
-}
-
-df = pd.DataFrame(data)
-
-# Define a function to determine the comment for each group
-def add_comment(group):
-    firm_qty_sum = group['firm_quantity'].sum()
-    client_qty_sum = group['client_quantity'].sum()
-    
-    if firm_qty_sum == 0:
-        return 'Not Booked'
-    elif firm_qty_sum != client_qty_sum:
-        return 'QTY difference'
-    else:
-        return ''  # No comment if quantities match
-
-# Apply the function to add the 'comment' column
-df['comment'] = df.groupby('ID').transform(add_comment)['firm_quantity']
-
-print(df)
-
-
-
-
-
 
 from sklearn.feature_extraction.text import TfidfVectorizer
 import numpy as np
