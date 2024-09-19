@@ -1,5 +1,35 @@
 import pandas as pd
 
+# Sample DataFrame
+data = {
+    'ID': [1, 1, 1, 2, 2, 3, 3, 3, 3],
+    'Side': ['B', 'S', 'B', 'B', 'B', 'S', 'S', 'B', 'B'],
+    'Value': [100, 200, 150, 110, 120, 300, 400, 250, 260]
+}
+df = pd.DataFrame(data)
+
+# Function to apply conditions
+def apply_wash_label(group):
+    sides_present = group['Side'].unique()
+    if 'B' in sides_present and 'S' in sides_present:
+        # Further checks for each subgroup if needed
+        # For simplicity, adding 'wash' to all rows in this group
+        group['Label'] = 'wash'
+    else:
+        group['Label'] = ''
+    return group
+
+# Apply the function to each group based on 'ID'
+df = df.groupby('ID').apply(apply_wash_label)
+
+# Display the resulting DataFrame
+print(df)
+
+
+
+
+import pandas as pd
+
 # Sample DataFrame creation (assuming the column names 'ID', 'firm_quantity', 'client_quantity', etc.)
 data = {
     'ID': ['A', 'A', 'A', 'B', 'B', 'C', 'C', 'C'],
