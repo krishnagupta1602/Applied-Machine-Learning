@@ -1,3 +1,6 @@
+df.apply(lambda row: row['dr'] if abs(row['dr']) >= abs(row['cr']) else row['cr'], axis=1)
+
+
 import pandas as pd
 from itertools import combinations
 
