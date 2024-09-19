@@ -1,4 +1,56 @@
 import pandas as pd
+from itertools import combinations
+
+def find_zero_sum_numbers(df):
+    final_numbers = []
+    indices_to_exclude = set()  # Keep track of rows that have already been used
+    
+    # Iterate over all possible combination sizes (from 1 to len(df))
+    for r in range(1, len(df) + 1):
+        # Get combinations of row indices that are not in the exclusion list
+        available_indices = [i for i in range(len(df)) if i not in indices_to_exclude]
+        for combo in combinations(available_indices, r):
+            # Calculate the sum of 'debit' and 'amount' for this combination
+            debit_sum = df.loc[combo, 'debit'].sum()
+            amount_sum = df.loc[combo, 'amount'].sum()
+            
+            # Check if both sums are zero
+            if debit_sum == 0 and amount_sum == 0:
+                # Add the 'number' values to the final list
+                final_numbers.extend(df.loc[combo, 'number'].tolist())
+                
+                # Add these indices to the exclusion list
+                indices_to_exclude.update(combo)
+                
+                # Break to move to the next iteration since we've found a valid combination
+                break
+    
+    return final_numbers
+
+# Sample DataFrame
+data = {
+    'number': [1, 2, 3, 4, 5],
+    'debit': [100, -100, 50, -50, 0],
+    'amount': [200, -200, 50, -50, 0]
+}
+df = pd.DataFrame(data)
+
+# Get the final numbers that meet the condition
+final_numbers = find_zero_sum_numbers(df)
+print(final_numbers)
+
+
+##############################################
+
+
+
+
+
+
+
+
+
+import pandas as pd
 
 # Sample DataFrame
 data = {
