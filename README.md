@@ -6,7 +6,7 @@ sentences = [
     "This is the first sentence.",
     "This is the second sentence.",
     "And this is the third one."
-]
+
 
 # Join all sentences into a single document
 document = " ".join(sentences)
