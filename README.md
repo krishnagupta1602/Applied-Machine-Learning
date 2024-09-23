@@ -1,4 +1,36 @@
 from sklearn.feature_extraction.text import TfidfVectorizer
+
+# Sample document as a string
+document = "Sentence one. Sentence two. Sentence three. Sentence four."
+
+# Split the document into sentences
+sentences = document.split('. ')
+
+# Treat the entire document (all sentences together) as the corpus (joined as one string)
+corpus = [' '.join(sentences)]  # One single document
+
+# Initialize the TfidfVectorizer
+vectorizer = TfidfVectorizer()
+
+# Fit the TF-IDF vectorizer on the entire document
+vectorizer.fit(corpus)
+
+# Transform each sentence based on the fitted model (corpus-level)
+tfidf_matrix = [vectorizer.transform([sentence]) for sentence in sentences]
+
+# Print the TF-IDF vectors for each sentence
+for idx, tfidf_vector in enumerate(tfidf_matrix):
+    print(f"Sentence {idx+1} TF-IDF vector:")
+    print(tfidf_vector.toarray())
+
+# To view the feature names (words)
+print("\nFeature Names (Words):", vectorizer.get_feature_names_out())
+
+
+
+
+
+from sklearn.feature_extraction.text import TfidfVectorizer
 import numpy as np
 
 # List of sentences (all form one document)
