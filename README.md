@@ -1,3 +1,38 @@
+from sklearn.feature_extraction.text import TfidfVectorizer
+
+# List of sentences (all form one document)
+sentences = [
+    "This is the first sentence.",
+    "This is the second sentence.",
+    "And this is the third one."
+]
+
+# Join all sentences into a single document
+document = " ".join(sentences)
+
+# Initialize the TfidfVectorizer and fit it on the entire document (as one unit)
+vectorizer = TfidfVectorizer()
+
+# Fit on the combined document but do not transform yet
+vectorizer.fit([document])
+
+# Now transform each sentence individually using the fitted vectorizer
+tfidf_matrix = vectorizer.transform(sentences)
+
+# Get the feature names and the TF-IDF scores for each sentence
+feature_names = vectorizer.get_feature_names_out()
+tfidf_scores = tfidf_matrix.toarray()
+
+# Display the TF-IDF results for each sentence
+for i, sentence in enumerate(sentences):
+    print(f"Sentence {i + 1}: {sentence}")
+    for word, score in zip(feature_names, tfidf_scores[i]):
+        if score > 0:
+            print(f"  {word}: {score}")
+            
+
+
+
 import numpy as np
 
 def otsu_threshold(L):
