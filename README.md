@@ -29,7 +29,27 @@ for sentence in sentences:
     word_counts = vectorizer.transform([sentence]).toarray().flatten()
     
     # Calculate the TF-IDF by multiplying TF with IDF
-    tfidf_scores = word_counts * np.array([idf_values.get(word
+    tfidf_scores = word_counts * np.array([idf_values.get(word, 0) for word in vectorizer.get_feature_names_out()])
+    
+    # Append the sentence's TF-IDF scores to the matrix
+    tfidf_matrix.append(tfidf_scores)
+
+# Convert to a NumPy array for better printing
+tfidf_matrix = np.array(tfidf_matrix)
+
+# Print the final TF-IDF matrix (one array per sentence)
+print("TF-IDF Matrix (each row corresponds to a sentence):")
+print(tfidf_matrix)
+
+# Get feature names (words) for reference (optional)
+feature_names = vectorizer.get_feature_names_out()
+print("\nFeature Names (columns in the matrix):", feature_names)
+
+
+
+
+
+
 
 
 
