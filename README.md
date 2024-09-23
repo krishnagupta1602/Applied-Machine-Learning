@@ -1,3 +1,47 @@
+import numpy as np
+
+def otsu_threshold(L):
+    # Sort the data
+    L = np.sort(L)
+    
+    # Total number of data points
+    total = len(L)
+    
+    # Compute cumulative sums and means
+    sumT = np.sum(L)
+    weightB, sumB = 0, 0
+    max_var, threshold = 0, 0
+    
+    for i in range(total):
+        weightB += 1          # Number of elements in class B
+        weightF = total - weightB  # Number of elements in class F
+        if weightF == 0:
+            break
+        
+        sumB += L[i]              # Sum of elements in class B
+        meanB = sumB / weightB     # Mean of class B
+        meanF = (sumT - sumB) / weightF  # Mean of class F
+        
+        # Between-class variance
+        between_var = weightB * weightF * (meanB - meanF) ** 2
+        
+        # Maximize between-class variance
+        if between_var > max_var:
+            max_var = between_var
+            threshold = L[i]       # The current value as the threshold
+    
+    return threshold
+
+# Example usage:
+L = [3, 5, 10, 20, 50, 100, 200, 300]
+threshold = otsu_threshold(L)
+print(f"Otsu's Threshold: {threshold}")
+
+
+
+
+
+
 import pandas as pd
 from itertools import combinations
 
