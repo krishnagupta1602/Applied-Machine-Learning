@@ -1,4 +1,52 @@
 from sklearn.feature_extraction.text import TfidfVectorizer
+import numpy as np
+
+# List of sentences (all form one document)
+sentences = [
+    "This is the first sentence.",
+    "This is the second sentence.",
+    "And this is the third one."
+]
+
+# Join all sentences into a single document
+document = " ".join(sentences)
+
+# Initialize TfidfVectorizer and fit on the whole document
+vectorizer = TfidfVectorizer()
+
+# Fit on the combined document
+vectorizer.fit([document])
+
+# Get the IDF values from the fitted vectorizer
+idf_values = dict(zip(vectorizer.get_feature_names_out(), vectorizer.idf_))
+
+# Initialize an empty list to store the TF-IDF for each sentence
+tfidf_per_sentence = []
+
+# For each sentence, calculate its term frequencies and then multiply by the IDF values
+for sentence in sentences:
+    word_counts = vectorizer.transform([sentence]).toarray().flatten()
+    tfidf_scores = word_counts * np.array([idf_values.get(word, 0) for word in vectorizer.get_feature_names_out()])
+    tfidf_per_sentence.append(tfidf_scores)
+
+# Get feature names (words)
+feature_names = vectorizer.get_feature_names_out()
+
+# Display the TF-IDF results for each sentence
+for i, sentence in enumerate(sentences):
+    print(f"Sentence {i + 1}: {sentence}")
+    for word, score in zip(feature_names, tfidf_per_sentence[i]):
+        if score > 0:
+            print(f"  {word}: {score}")
+            
+
+
+
+
+
+
+
+from sklearn.feature_extraction.text import TfidfVectorizer
 
 # List of sentences (all form one document)
 sentences = [
