@@ -1,30 +1,35 @@
 from sklearn.feature_extraction.text import TfidfVectorizer
+import numpy as np
 
-# Sample document as a string
-document = "Sentence one. Sentence two. Sentence three. Sentence four."
+# List of sentences (all form one document)
+sentences = [
+    "This is the first sentence.",
+    "This is the second sentence.",
+    "And this is the third one."
+]
 
-# Split the document into sentences
-sentences = document.split('. ')
+# Join all sentences into a single document
+document = " ".join(sentences)
 
-# Treat the entire document (all sentences together) as the corpus (joined as one string)
-corpus = [' '.join(sentences)]  # One single document
-
-# Initialize the TfidfVectorizer
+# Initialize TfidfVectorizer and fit on the whole document
 vectorizer = TfidfVectorizer()
 
-# Fit the TF-IDF vectorizer on the entire document
-vectorizer.fit(corpus)
+# Fit on the combined document (treating it as one large document)
+vectorizer.fit([document])
 
-# Transform each sentence based on the fitted model (corpus-level)
-tfidf_matrix = [vectorizer.transform([sentence]) for sentence in sentences]
+# Get the IDF values from the fitted vectorizer
+idf_values = dict(zip(vectorizer.get_feature_names_out(), vectorizer.idf_))
 
-# Print the TF-IDF vectors for each sentence
-for idx, tfidf_vector in enumerate(tfidf_matrix):
-    print(f"Sentence {idx+1} TF-IDF vector:")
-    print(tfidf_vector.toarray())
+# Initialize an empty list to store the TF-IDF matrix (each row will be a sentence)
+tfidf_matrix = []
 
-# To view the feature names (words)
-print("\nFeature Names (Words):", vectorizer.get_feature_names_out())
+# For each sentence, calculate its term frequencies and multiply by the IDF values
+for sentence in sentences:
+    # Get the term frequencies (TF) for the sentence
+    word_counts = vectorizer.transform([sentence]).toarray().flatten()
+    
+    # Calculate the TF-IDF by multiplying TF with IDF
+    tfidf_scores = word_counts * np.array([idf_values.get(word
 
 
 
