@@ -1,3 +1,38 @@
+
+import pandas as pd
+
+# Example function to get score (replace this with your actual function)
+def get_score(row):
+    # Placeholder for score logic based on the row
+    return [row['column1'] * 2]  # Example return, modify as needed
+
+# Function to process the dataframe in chunks
+def process_in_batches(df, batch_size):
+    final_scores = []
+    
+    # Iterate through the dataframe in chunks
+    for i in range(0, len(df), batch_size):
+        chunk = df.iloc[i:i + batch_size]
+        
+        # Process each row in the chunk
+        for index, row in chunk.iterrows():
+            score = get_score(row)
+            final_scores.append(score)
+    
+    return final_scores
+
+# Example dataframe (replace with your actual dataframe)
+data = {'column1': range(1586)}  # Replace with actual data
+df = pd.DataFrame(data)
+
+# Process the dataframe in 20 batches
+batch_size = len(df) // 20  # Calculate the batch size (around 79 per batch)
+final_scores = process_in_batches(df, batch_size)
+
+print(len(final_scores))  # To check the total number of scores processed
+
+
+
 from sklearn.feature_extraction.text import TfidfVectorizer
 import numpy as np
 
