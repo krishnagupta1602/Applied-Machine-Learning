@@ -1,3 +1,58 @@
+import torch
+import torch.nn as nn
+import torch.optim as optim
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler
+
+# Assuming data and labels are stored in X and y
+X_train, X_val, y_train, y_val = train_test_split(X, y, test_size=0.2, random_state=42)
+
+# Standardize features
+scaler = StandardScaler()
+X_train = scaler.fit_transform(X_train)
+X_val = scaler.transform(X_val)
+
+# Define the neural network
+class ClassifierNN(nn.Module):
+    def __init__(self):
+        super(ClassifierNN, self).__init__()
+        self.fc1 = nn.Linear(4, 32)  # input layer
+        self.fc2 = nn.Linear(32, 16)  # hidden layer
+        self.fc3 = nn.Linear(16, 1)   # output layer
+        
+    def forward(self, x):
+        x = torch.relu(self.fc1(x))
+        x = torch.relu(self.fc2(x))
+        x = torch.sigmoid(self.fc3(x))
+        return x
+
+# Initialize the model, loss function, and optimizer
+model = ClassifierNN()
+criterion = nn.BCELoss()
+optimizer = optim.Adam(model.parameters(), lr=0.001)
+
+# Training loop
+epochs = 50
+for epoch in range(epochs):
+    model.train()
+    optimizer.zero_grad()
+    outputs = model(torch.tensor(X_train, dtype=torch.float32))
+    loss = criterion(outputs.squeeze(), torch.tensor(y_train, dtype=torch.float32))
+    loss.backward()
+    optimizer.step()
+    
+    # Validation
+    model.eval()
+    with torch.no_grad():
+        val_outputs = model(torch.tensor(X_val, dtype=torch.float32))
+        val_loss = criterion(val_outputs.squeeze(), torch.tensor(y_val, dtype=torch.float32))
+    
+    print(f'Epoch {epoch+1}/{epochs}, Loss: {loss.item():.4f}, Val Loss: {val_loss.item():.4f}')
+
+
+
+
+
 
 import pandas as pd
 
