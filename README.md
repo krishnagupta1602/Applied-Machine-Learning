@@ -1,4 +1,60 @@
 import torch
+
+# Assume you have your trained model
+# model = ClassifierNN()
+# (Train your model here)
+
+# Save the model
+torch.save(model.state_dict(), "pretrained_model.pth")
+
+# To load the model later
+# 1. Create a new instance of the model
+loaded_model = ClassifierNN()
+
+# 2. Load the saved state dictionary into the model
+loaded_model.load_state_dict(torch.load("pretrained_model.pth"))
+
+# 3. Set the model to evaluation mode
+loaded_model.eval()
+
+# Now you can use loaded_model for predictions
+
+
+
+
+import torch
+import numpy as np
+
+# Assume the model is already trained and loaded here
+# model = ClassifierNN()
+# model.load_state_dict(torch.load("model.pth"))  # Load if needed
+
+# Example new entry (f3, f4)
+new_entry = [2.5, 3.5]  # Replace with the actual new values of f3 and f4
+
+# Preprocess the new entry (use the same scaler that was used during training)
+new_entry_scaled = scaler.transform([new_entry])  # Scaling it just like during training
+
+# Convert to PyTorch tensor
+new_entry_tensor = torch.tensor(new_entry_scaled, dtype=torch.float32)
+
+# Make the model evaluation ready
+model.eval()
+
+# Forward pass to get the prediction
+with torch.no_grad():  # No need to compute gradients for prediction
+    output = model(new_entry_tensor)
+    predicted_label = torch.round(output)  # Round the output (0 or 1 for binary classification)
+
+# Print the predicted label
+print(f"Predicted label for the new entry: {predicted_label.item()}")
+
+
+
+
+
+
+import torch
 import torch.nn as nn
 import torch.optim as optim
 from sklearn.model_selection import train_test_split
