@@ -1,3 +1,9 @@
+
+\b(?:brokerage(?:\s+(?:account|section|tab|accounts))?|brokers?|broker)\b
+
+
+
+
 import torch
 
 # Assume you have your trained model
