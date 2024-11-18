@@ -1,3 +1,4 @@
+\bcds?\b(?:\s+accounts?)?
 
 \b(?:brokerage(?:\s+(?:account|section|tab|accounts))?|brokers?|broker)\b
 
