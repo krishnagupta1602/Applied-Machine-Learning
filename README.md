@@ -1,3 +1,11 @@
+
+
+
+r'\b(?:security|privacy|fraud practice)\b'
+
+
+
+
 def remove_stopwords(corpus):
     """
     Remove stopwords from a list of sentences.
