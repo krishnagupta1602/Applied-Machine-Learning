@@ -1,4 +1,64 @@
+from sklearn.feature_extraction.text import CountVectorizer
+import pandas as pd
+
+def get_top_ngrams(corpus, n=1, top_k=10):
+    """
+    Extract top n-grams from a list of text.
+    
+    Parameters:
+    - corpus: list of str, input text.
+    - n: int, n-gram size (1 for unigram, 2 for bigram, 3 for trigram).
+    - top_k: int, number of top n-grams to return.
+    
+    Returns:
+    - DataFrame with n-grams and their frequencies.
+    """
+    # Initialize CountVectorizer for n-grams
+    vectorizer = CountVectorizer(ngram_range=(n, n))
+    X = vectorizer.fit_transform(corpus)
+    
+    # Summing up the counts of each n-gram
+    ngram_counts = X.toarray().sum(axis=0)
+    ngram_features = vectorizer.get_feature_names_out()
+    
+    # Create a DataFrame with n-grams and their frequencies
+    ngram_freq = pd.DataFrame({'ngram': ngram_features, 'frequency': ngram_counts})
+    
+    # Sort and get top k
+    ngram_freq = ngram_freq.sort_values(by='frequency', ascending=False).head(top_k)
+    
+    return ngram_freq
+
+# Example usage
+corpus = [
+    "This is a sample text with sample words.",
+    "Text analysis is an interesting field.",
+    "We are exploring n-grams from this text data."
+]
+
+# Top 10 unigrams
+print("Top Unigrams:")
+print(get_top_ngrams(corpus, n=1, top_k=10))
+
+# Top 10 bigrams
+print("\nTop Bigrams:")
+print(get_top_ngrams(corpus, n=2, top_k=10))
+
+# Top 10 trigrams
+print("\nTop Trigrams:")
+print(get_top_ngrams(corpus, n=3, top_k=10))
+
+
+
+
+
+
+
 \bcds?\b(?:\s+accounts?)?
+
+
+
+
 
 \b(?:brokerage(?:\s+(?:account|section|tab|accounts))?|brokers?|broker)\b
 
