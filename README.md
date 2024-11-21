@@ -1,4 +1,25 @@
-from sklearn.feature_extraction.text import CountVectorizer
+def remove_stopwords(corpus):
+    """
+    Remove stopwords from a list of sentences.
+
+    Parameters:
+    - corpus: list of str, input sentences.
+
+    Returns:
+    - list of str, sentences without stopwords.
+    """
+    stop_words = set(stopwords.words('english'))  # Get the list of English stopwords
+    cleaned_corpus = []
+    
+    for sentence in corpus:
+        words = sentence.split()  # Split sentence into words
+        filtered_words = [word for word in words if word.lower() not in stop_words]
+        cleaned_corpus.append(' '.join(filtered_words))  # Reconstruct the sentence
+    
+    return cleaned_corpus
+    
+    
+    from sklearn.feature_extraction.text import CountVectorizer
 import pandas as pd
 
 def get_top_ngrams(corpus, n=1, top_k=10):
