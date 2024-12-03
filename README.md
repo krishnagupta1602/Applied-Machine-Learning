@@ -1,4 +1,18 @@
 
+python.CoInitialize():
+
+This initializes the COM library for use in the current thread.
+It's required for interacting with COM objects like Outlook when you're using libraries like pywin32.
+Without this, you might encounter issues when trying to dispatch and use COM objects.
+Outlook=win32.client.Dispatch("Outlook.Application").GetNameSpace("MAPI"):
+
+This connects to the Outlook application via the Dispatch method from pywin32, creating a COM object that allows Python to interact with Outlook.
+GetNameSpace("MAPI") accesses the Messaging Application Programming Interface (MAPI), which is used to manage Outlook data (emails, calendars, contacts, etc.).
+The Outlook object now represents a session with Outlook and provides access to its features.
+folders = outlook.Folders:
+
+This retrieves the collection of top-level folders in the Outlook application.
+From here, you can iterate through or access specific folders (like "Inbox" or "Sent Items") to extract emails or perform other operations.
 
 
 r'\b(?:security|privacy|fraud practice)\b'
