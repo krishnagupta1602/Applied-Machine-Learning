@@ -1,3 +1,24 @@
+Apple - Plape
+Google - Gogeol
+Amazon - Zanoma
+Microsoft - Crosotfim
+Facebook - Koofceab
+Tesla - Stale
+Samsung - Usmangs
+Netflix - Feltnix
+Adobe - Dobea
+Intel - Letin
+IBM - BMI
+Coca-Cola - Ocac-Calo
+Nike - Kien
+Pepsi - Speip
+Spotify - Tiysofp
+Disney - Ysdein
+Uber - Rube
+Oracle - Lacreor
+Sony - Ynos
+Twitter - Ttwiter
+
 
 python.CoInitialize():
 
