@@ -12,7 +12,53 @@ The Outlook object now represents a session with Outlook and provides access to 
 folders = outlook.Folders:
 
 This retrieves the collection of top-level folders in the Outlook application.
-From here, you can iterate through or access specific folders (like "Inbox" or "Sent Items") to extract emails or perform other operations.
+From here, you can iterate through or access specific folders (like "Inbox" or "Sent Items") to extract emails or perf
+
+Santa - Natas
+Snowflake - Fakeslown
+Reindeer - Deerrein
+Mistletoe - Eetostilm
+Ornament - Monanert
+Carolers - Losrecar
+Stocking - Gitskonc
+Wreath - Thwear
+Sleigh - Hgiles
+Elf - Fle
+Office Words
+Manager - Ragamen
+Colleague - Gelueocal
+Printer - Nertipr
+Meeting - Gteniem
+Schedule - Eldusche
+Desk - Sdek
+Laptop - Ptalpo
+Paperclip - Reppacpli
+Chair - Ahirc
+Email - Iamle
+Keyboard - Bradykoe
+Mouse - Esuom
+Document - Cemdonut
+Stationery - Aitnoryets
+Whiteboard - Oathibedwr
+Presentation - Sentationpre
+Planner - Lerpnna
+Files - Sfiel
+Task - Ksat
+Coffee - Efofec
+Christmas Words (Easy)
+Tree - Eetr
+Star - Tsar
+Gift - Fgit
+Bell - Lelb
+Snow - Nows
+Elf - Fle
+Holly - Loyhl
+Candy - Dycan
+Santa - Natas
+Frost - Sroft
+
+
+orm other operations.
 
 
 r'\b(?:security|privacy|fraud practice)\b'
