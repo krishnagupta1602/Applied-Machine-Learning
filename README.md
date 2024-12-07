@@ -1,3 +1,328 @@
+
+Features of Lists in Python
+Ordered and Mutable: Lists maintain the order of elements and allow modification (add, remove, or change elements).
+Heterogeneous Elements: Lists can store a mix of data types (e.g., integers, strings, and even other lists).
+Indexed Access: Elements can be accessed via zero-based indexing and slicing.
+Dynamic Size: Lists can grow or shrink as needed; there is no fixed size.
+Wide Range of Methods: Python lists support a variety of built-in methods for common operations like sorting, appending, and searching.
+
+# 1. Creating and Appending to a List
+my_list = [1, 2, 3]
+my_list.append(4)  # Adds 4 to the end of the list
+print("After append:", my_list)  # Output: [1, 2, 3, 4]
+
+# 2. Extending a List
+my_list.extend([5, 6])  # Adds multiple elements
+print("After extend:", my_list)  # Output: [1, 2, 3, 4, 5, 6]
+
+# 3. Inserting Elements
+my_list.insert(2, 'a')  # Inserts 'a' at index 2
+print("After insert:", my_list)  # Output: [1, 2, 'a', 3, 4, 5, 6]
+
+# 4. Removing Elements
+my_list.remove('a')  # Removes the first occurrence of 'a'
+print("After remove:", my_list)  # Output: [1, 2, 3, 4, 5, 6]
+
+# 5. Popping Elements
+last_element = my_list.pop()  # Removes and returns the last element
+print("Popped element:", last_element)  # Output: 6
+print("After pop:", my_list)  # Output: [1, 2, 3, 4, 5]
+
+# 6. Reversing a List
+my_list.reverse()  # Reverses the list in place
+print("After reverse:", my_list)  # Output: [5, 4, 3, 2, 1]
+
+# 7. Sorting a List
+unsorted_list = [3, 1, 4, 2]
+unsorted_list.sort()  # Sorts the list in ascending order
+print("After sort:", unsorted_list)  # Output: [1, 2, 3, 4]
+
+# 8. Finding Index of an Element
+index = my_list.index(4)  # Finds the index of the first occurrence of 4
+print("Index of 4:", index)  # Output: 1
+
+# 9. Counting Occurrences
+my_list = [1, 2, 2, 3]
+count = my_list.count(2)  # Counts how many times 2 appears
+print("Count of 2:", count)  # Output: 2
+
+# 10. Copying a List
+copy_list = my_list.copy()  # Creates a shallow copy of the list
+print("Copied list:", copy_list)  # Output: [1, 2, 2, 3]
+
+# 11. Clearing a List
+my_list.clear()  # Removes all elements from the list
+print("After clear:", my_list)  # Output: []
+
+
+Features of Tuples in Python
+Immutable: Tuples cannot be modified after creation, ensuring data integrity.
+Ordered: Tuples maintain the order of elements, similar to lists.
+Heterogeneous Elements: Tuples can store a mix of data types.
+Faster than Lists: Accessing and iterating through tuples is faster due to their immutability.
+Supports Indexing and Slicing: Elements can be accessed by index or sliced like lists.
+
+
+# 1. Creating a Tuple
+my_tuple = (1, 2, 3, 4)
+print("Tuple:", my_tuple)  # Output: (1, 2, 3, 4)
+
+# 2. Accessing Elements by Index
+print("Element at index 2:", my_tuple[2])  # Output: 3
+
+# 3. Slicing a Tuple
+print("Sliced tuple (1:3):", my_tuple[1:3])  # Output: (2, 3)
+
+# 4. Finding Length of a Tuple
+print("Length of tuple:", len(my_tuple))  # Output: 4
+
+# 5. Checking Membership
+print("Is 3 in tuple?", 3 in my_tuple)  # Output: True
+
+# 6. Concatenating Tuples
+new_tuple = my_tuple + (5, 6)
+print("After concatenation:", new_tuple)  # Output: (1, 2, 3, 4, 5, 6)
+
+# 7. Repeating Tuples
+repeated_tuple = my_tuple * 2
+print("After repetition:", repeated_tuple)  # Output: (1, 2, 3, 4, 1, 2, 3, 4)
+
+# 8. Finding Index of an Element
+index = my_tuple.index(3)
+print("Index of 3:", index)  # Output: 2
+
+# 9. Counting Occurrences of an Element
+count = my_tuple.count(2)
+print("Count of 2:", count)  # Output: 1
+
+# 10. Nesting Tuples
+nested_tuple = (my_tuple, (5, 6))
+print("Nested tuple:", nested_tuple)  # Output: ((1, 2, 3, 4), (5, 6))
+
+# 11. Unpacking a Tuple
+a, b, c, d = my_tuple
+print("Unpacked values:", a, b, c, d)  # Output: 1 2 3 4
+
+
+Features of Sets in Python
+Unordered and Unindexed: Sets do not maintain order, and elements cannot be accessed using an index.
+Unique Elements: Sets automatically remove duplicates, ensuring all elements are unique.
+Mutable: You can add or remove elements, but the set itself cannot contain mutable elements like lists.
+Optimized for Membership Testing: Sets provide fast checks for whether an element exists.
+Supports Mathematical Set Operations: Union, intersection, difference, and symmetric difference are supported.
+
+
+# 1. Creating a Set
+my_set = {1, 2, 3, 4}
+print("Set:", my_set)  # Output: {1, 2, 3, 4}
+
+# 2. Adding Elements
+my_set.add(5)  # Adds 5 to the set
+print("After add:", my_set)  # Output: {1, 2, 3, 4, 5}
+
+# 3. Removing Elements
+my_set.remove(3)  # Removes 3 from the set (raises error if not found)
+print("After remove:", my_set)  # Output: {1, 2, 4, 5}
+
+# 4. Checking Membership
+print("Is 2 in set?", 2 in my_set)  # Output: True
+
+# 5. Union of Two Sets
+another_set = {3, 4, 5, 6}
+union_set = my_set.union(another_set)
+print("Union:", union_set)  # Output: {1, 2, 3, 4, 5, 6}
+
+# 6. Intersection of Two Sets
+intersection_set = my_set.intersection(another_set)
+print("Intersection:", intersection_set)  # Output: {4, 5}
+
+# 7. Difference of Two Sets
+difference_set = my_set.difference(another_set)
+print("Difference:", difference_set)  # Output: {1, 2}
+
+# 8. Clearing a Set
+my_set.clear()  # Removes all elements
+print("After clear:", my_set)  # Output: set()
+
+
+Features of Dictionaries in Python
+Key-Value Pairs: Dictionaries store data as key-value pairs, where each key is unique.
+Unordered: Dictionaries do not maintain the order of elements (Python 3.7+ maintains insertion order).
+Mutable: You can add, update, or remove key-value pairs.
+Fast Lookup: Dictionaries provide efficient key-based access to values.
+Heterogeneous Keys and Values: Both keys and values can be of any data type.
+
+
+# 1. Creating a Dictionary
+my_dict = {'a': 1, 'b': 2, 'c': 3}
+print("Dictionary:", my_dict)  # Output: {'a': 1, 'b': 2, 'c': 3}
+
+# 2. Accessing Values by Key
+print("Value for 'b':", my_dict['b'])  # Output: 2
+
+# 3. Adding or Updating Key-Value Pairs
+my_dict['d'] = 4  # Adds 'd': 4
+my_dict['a'] = 10  # Updates value of 'a'
+print("After add/update:", my_dict)  # Output: {'a': 10, 'b': 2, 'c': 3, 'd': 4}
+
+# 4. Removing a Key-Value Pair
+del my_dict['b']  # Removes the key 'b'
+print("After delete:", my_dict)  # Output: {'a': 10, 'c': 3, 'd': 4}
+
+# 5. Checking Key Existence
+print("Is 'c' a key?", 'c' in my_dict)  # Output: True
+
+# 6. Getting Keys, Values, and Items
+keys = my_dict.keys()  # Returns dictionary keys
+values = my_dict.values()  # Returns dictionary values
+items = my_dict.items()  # Returns key-value pairs
+print("Keys:", keys)  # Output: dict_keys(['a', 'c', 'd'])
+print("Values:", values)  # Output: dict_values([10, 3, 4])
+print("Items:", items)  # Output: dict_items([('a', 10), ('c', 3), ('d', 4)])
+
+# 7. Popping an Item
+popped_item = my_dict.pop('d')  # Removes and returns the item for 'd'
+print("Popped item:", popped_item)  # Output: 4
+print("After pop:", my_dict)  # Output: {'a': 10, 'c': 3}
+
+# 8. Clearing a Dictionary
+my_dict.clear()  # Removes all key-value pairs
+print("After clear:", my_dict)  # Output: {}
+
+
+
+
+Features of Strings in Python
+Immutable: Strings cannot be changed after creation. Any modification results in a new string.
+Ordered: Strings maintain the order of characters, and indexing is supported.
+Heterogeneous: Strings can contain letters, digits, punctuation, and special characters.
+Supports Indexing and Slicing: Characters can be accessed by their index or sliced into substrings.
+Built-in Methods: Strings have many methods for manipulation, searching, and formatting.
+
+
+
+# 1. Creating a String
+my_str = "Hello, World!"
+print("String:", my_str)  # Output: Hello, World!
+
+# 2. Accessing Characters by Index
+print("Character at index 0:", my_str[0])  # Output: H
+
+# 3. Slicing a String
+print("Sliced string (0:5):", my_str[0:5])  # Output: Hello
+
+# 4. Changing Case
+print("Uppercase:", my_str.upper())  # Output: HELLO, WORLD!
+print("Lowercase:", my_str.lower())  # Output: hello, world!
+
+# 5. Finding a Substring
+print("Index of 'World':", my_str.find('World'))  # Output: 7
+
+# 6. Replacing Substring
+new_str = my_str.replace('World', 'Python')
+print("After replace:", new_str)  # Output: Hello, Python!
+
+# 7. Checking if a Substring Exists
+print("Contains 'Hello'?", 'Hello' in my_str)  # Output: True
+
+# 8. Counting Occurrences of a Substring
+print("Count of 'o':", my_str.count('o'))  # Output: 2
+
+# 9. Splitting a String
+split_str = my_str.split(',')  # Splits into a list at the comma
+print("After split:", split_str)  # Output: ['Hello', ' World!']
+
+# 10. Stripping Whitespace
+stripped_str = "  Hello!  ".strip()  # Removes leading and trailing whitespace
+print("After strip:", stripped_str)  # Output: Hello!
+
+
+List vs Tuple
+Immutability:
+
+Tuple is immutable, meaning it can't be modified after creation, which makes it more suitable for read-only data or when you need to ensure data integrity.
+List is mutable, so it can be changed (added to, removed from, or modified), which makes it more flexible for dynamic data.
+Memory Efficiency:
+
+Tuple consumes less memory than a list, making it more space-efficient when dealing with large data that doesn’t require modification.
+List takes up more memory due to its mutability.
+Performance:
+
+Tuple is generally faster for iteration and accessing elements due to its immutability.
+List has slightly higher overhead because of the need to support modifications.
+Tuple vs Set
+Uniqueness of Elements:
+Set automatically removes duplicates and ensures all elements are unique, whereas Tuple can contain duplicate elements.
+Search and Lookup:
+Set provides faster membership testing (O(1) average time complexity) compared to Tuple, which has O(n) for membership testing.
+Order:
+Tuple maintains the order of elements, while Set is unordered. This makes Tuple suitable for ordered data and Set for ensuring uniqueness without caring about the order.
+Set vs Dictionary
+Key-Value Association:
+
+Dictionary stores key-value pairs, making it ideal when you need to map one element to another (e.g., for lookups, counting, etc.).
+Set only stores unique values without any key-value association, making it simpler when only uniqueness and membership testing are needed.
+Memory and Speed:
+
+Dictionary generally requires more memory due to storing both keys and values, while Set stores only the elements.
+Both Set and Dictionary offer O(1) average time complexity for search operations, but Dictionary adds overhead for handling both keys and values.
+List vs Set
+Uniqueness:
+
+Set automatically removes duplicates, whereas List allows duplicates, making Set the go-to choice when you want only unique elements.
+Order:
+
+List maintains the order of elements, making it suitable for situations where the order matters.
+Set is unordered, meaning there is no guarantee about the order of elements.
+Search Efficiency:
+
+Set offers faster membership testing (O(1) average time complexity) compared to List, which is O(n) for membership checks.
+List vs Dictionary
+Key-Value Pairing:
+
+Dictionary is preferred when you need to associate a key with a value (e.g., a phone book or database).
+List is a simple sequence of elements and is not suited for key-value pairs.
+Performance for Search:
+
+Dictionary offers O(1) average time complexity for searching by keys, while searching through a List requires O(n) time.
+Flexibility:
+
+List is more flexible in terms of order and can be indexed using integers, while Dictionary provides key-based indexing, which may be more useful for mapping real-world data.
+Summary of When to Use Each:
+Use a List when:
+You need ordered, mutable collections.
+You may need to modify the collection (add, remove, or update elements).
+You need indexed access to elements.
+Use a Tuple when:
+You need immutable data (i.e., the data shouldn't change).
+You want a more memory-efficient collection than a list.
+You need to store a fixed sequence of elements.
+Use a Set when:
+You need to store a collection of unique elements.
+You care only about membership (e.g., checking if an element is in the set).
+You don't care about the order of elements.
+Use a Dictionary when:
+You need to store data as key-value pairs.
+You need fast lookups by key.
+You need to associate values with specific keys for easy access and modification.
+Choosing the appropriate data structure depends on the specific requirements of your program, such as performance (speed of search), memory constraints, and the type of operations you need to perform on the data.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 Apple - Plape
 Google - Gogeol
 Amazon - Zanoma
