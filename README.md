@@ -1,3 +1,48 @@
+List:
+Ordered: Elements maintain insertion order.
+Mutable: Can modify (add, remove, change elements).
+Duplicates: Allows duplicate elements.
+Search Order: O(n) for searching.
+Memory: More memory overhead due to dynamic resizing.
+When to use: When you need ordered, mutable, and potentially duplicated items.
+
+Tuple:
+Ordered: Elements maintain insertion order.
+Immutable: Cannot modify once created.
+Duplicates: Allows duplicate elements.
+Search Order: O(n) for searching.
+Memory: More memory efficient than lists due to immutability.
+When to use: When you need an ordered, immutable collection, typically for fixed data.
+
+Set:
+Unordered: No guarantee of element order.
+Mutable: Can add/remove elements, but cannot modify elements directly.
+No Duplicates: Automatically removes duplicates.
+Search Order: O(1) average for membership testing (using hashing).
+Memory: Efficient for uniqueness and fast lookups.
+When to use: When you need unique items and fast membership testing.
+
+Dictionary:
+Ordered (from Python 3.7): Maintains insertion order.
+Mutable: Can modify, add, or remove key-value pairs.
+No Duplicates in Keys: Keys must be unique.
+Search Order: O(1) average for key lookup.
+Memory: More memory overhead for key-value pairs compared to sets.
+When to use: When you need key-value pairs with fast lookups by key.
+
+Summary of Selection:
+Memory Efficiency: Tuple > Set > List > Dictionary.
+Speed: Set, Dictionary (O(1) lookups) > List, Tuple (O(n) lookups).
+Use Case:
+List: Ordered, mutable sequence with duplicates.
+Tuple: Ordered, immutable sequence.
+Set: Unordered, unique items, fast membership test.
+Dictionary: Key-value pairs with fast key lookup.
+
+
+
+
+
 
 Features of Lists in Python
 Ordered and Mutable: Lists maintain the order of elements and allow modification (add, remove, or change elements).
