@@ -1,3 +1,234 @@
+map(), filter(), and reduce() in Python
+These are built-in functions in Python used for functional programming. They allow you to apply a function to a sequence or iterable in a concise way. Here's a breakdown:
+
+1. map()
+Purpose: Apply a function to each item in an iterable and return a new iterable (e.g., list, tuple).
+Syntax: map(function, iterable)
+Key Points:
+The function is applied to each element of the iterable.
+Returns a map object (can be converted to a list, tuple, etc.).
+
+# Example: Square each number in a list
+nums = [1, 2, 3, 4]
+squared = map(lambda x: x ** 2, nums)
+print(list(squared))  # Output: [1, 4, 9, 16]
+
+2. filter()
+Purpose: Filter elements in an iterable based on a function that returns True or False.
+Syntax: filter(function, iterable)
+Key Points:
+The function is a test condition (predicate) applied to each element.
+Only elements for which the function returns True are included in the result.
+
+# Example: Filter even numbers from a list
+nums = [1, 2, 3, 4, 5, 6]
+even = filter(lambda x: x % 2 == 0, nums)
+print(list(even))  # Output: [2, 4, 6]
+
+3. reduce()
+Purpose: Apply a function cumulatively to the items of an iterable, reducing it to a single value.
+Syntax: reduce(function, iterable)
+Key Points:
+The function takes two arguments: the current result and the next element.
+Requires importing from the functools module.
+
+from functools import reduce
+
+# Example: Find the product of all numbers in a list
+nums = [1, 2, 3, 4]
+product = reduce(lambda x, y: x * y, nums)
+print(product)  # Output: 24
+
+
+
+
+The try and except blocks in Python are used for handling exceptions, which are errors detected during program execution.
+
+Main Features:
+Error Handling: Prevents the program from crashing due to unexpected errors by catching exceptions.
+Graceful Exit: Allows the program to execute alternative code or notify users when an error occurs.
+Specific Exception Handling: You can handle specific errors using except clauses with specific exception types (e.g., ZeroDivisionError).
+Multiple except Blocks: Different types of errors can be handled differently.
+
+numbers = [10, 0, 5]
+for num in numbers:
+    try:
+        result = 100 / num
+        print(f"100 divided by {num} is {result}")
+    except ZeroDivisionError:
+        print(f"Cannot divide by zero for {num}.")
+
+my_list = [1, 2, 3]
+try:
+    print(my_list[5])  # Attempting to access an out-of-range index
+except IndexError:
+    print("Error: Index out of range.")
+
+my_list = [1, 2, 3]
+try:
+    print(my_list[5])  # Attempting to access an out-of-range index
+except Exception as e:
+    print("Error occurred : {e}")
+
+NumPy is a powerful Python library for numerical computing. At its core is the ndarray object, which provides efficient storage and computation for multi-dimensional arrays.
+
+Key Features of NumPy Arrays
+Efficient Storage: NumPy arrays (ndarrays) are more memory-efficient than Python lists because they store elements of the same type. NumPy arrays allocate memory based on the data type of the array (e.g., int32, float64), ensuring a fixed memory size per element.Python lists store references to objects, and each object includes additional metadata, significantly increasing memory consumption. NumPy arrays can save only one data type for their elements, but this is a deliberate design choice to optimize memory usage and computation speed. This makes NumPy a preferred choice for numerical and scientific computing tasks.
+Multi-dimensional Arrays: Support for creating and manipulating arrays of any dimension.
+Vectorized Operations: Perform element-wise operations without loops, making computations faster.
+Broadcasting: Apply operations on arrays of different shapes without explicit loops.
+Mathematical Functions: Includes optimized mathematical functions like sin, cos, log, etc.
+Indexing and Slicing: Access specific elements or subarrays using powerful slicing and indexing techniques.
+Shape Manipulation: Reshape, flatten, or transpose arrays with ease.
+Aggregation Functions: Includes functions like sum, mean, max, min, and more.
+Integration with Other Libraries: Works seamlessly with libraries like pandas, matplotlib, and scikit-learn.
+
+import numpy as np
+
+Creating Arrays
+# 1D Array
+arr1 = np.array([1, 2, 3, 4])
+print(arr1)  # Output: [1 2 3 4]
+
+# 2D Array
+arr2 = np.array([[1, 2], [3, 4]])
+print(arr2)  # Output: [[1 2]
+             #          [3 4]]
+
+# Array with zeros
+zeros = np.zeros((2, 3))
+print(zeros)  # Output: [[0. 0. 0.]
+              #          [0. 0. 0.]]
+
+# Array with ones
+ones = np.ones((3, 2))
+print(ones)  # Output: [[1. 1.]
+             #          [1. 1.]
+             #          [1. 1.]]
+
+# Array with a range of values
+range_array = np.arange(0, 10, 2)
+print(range_array)  # Output: [0 2 4 6 8]
+
+# Array with evenly spaced values
+linspace_array = np.linspace(0, 1, 5)
+print(linspace_array)  # Output: [0.   0.25 0.5  0.75 1.  ]
+
+Indexing and Slicing
+# 1D Array
+arr = np.array([10, 20, 30, 40, 50])
+print(arr[1])  # Output: 20
+print(arr[1:4])  # Output: [20 30 40]
+
+# 2D Array
+arr2 = np.array([[1, 2, 3], [4, 5, 6], [7, 8, 9]])
+print(arr2[1, 2])  # Output: 6 (element in 2nd row, 3rd column)
+print(arr2[:, 1])  # Output: [2 5 8] (all rows, 2nd column)
+print(arr2[0:2, 1:3])  # Output: [[2 3]
+                       #          [5 6]]
+
+Array Operations
+# Element-wise operations
+arr = np.array([1, 2, 3, 4])
+print(arr + 10)  # Output: [11 12 13 14]
+print(arr * 2)   # Output: [ 2  4  6  8]
+
+# Broadcasting
+arr2 = np.array([[1, 2], [3, 4]])
+print(arr2 + np.array([10, 20]))  # Output: [[11 22]
+                                  #          [13 24]]
+
+# Aggregation
+print(np.sum(arr))  # Output: 10
+print(np.mean(arr))  # Output: 2.5
+print(np.max(arr))  # Output: 4
+
+Shape Manipulation
+arr = np.array([[1, 2, 3], [4, 5, 6]])
+
+# Reshape
+reshaped = arr.reshape(3, 2)
+print(reshaped)  # Output: [[1 2]
+                 #          [3 4]
+                 #          [5 6]]
+
+# Transpose
+transposed = arr.T
+print(transposed)  # Output: [[1 4]
+                   #          [2 5]
+                   #          [3 6]]
+
+# Flatten
+flattened = arr.flatten()
+print(flattened)  # Output: [1 2 3 4 5 6]
+
+
+Mathematical Functions
+arr = np.array([1, 2, 3, 4, 5])
+arr2 = np.array([10, 20, 30, 40, 50])
+angles = np.array([0, np.pi / 2, np.pi])
+
+# Mathematical Functions
+print("Square Root:", np.sqrt(arr))          # [1. 1.414 1.732 2.236 2.449]
+print("Exponent:", np.exp(arr))             # [  2.718  7.389  20.086  54.598 148.413]
+print("Log:", np.log(arr))                  # [0.   0.693 1.099 1.386 1.609]
+print("Floor:", np.floor([1.234, 5.678]))   # [1. 5.]
+print("Ceil:", np.ceil([1.234, 5.678]))     # [2. 6.]
+
+# Statistical Functions
+print("Sum:", np.sum(arr))                  # 15
+print("Mean:", np.mean(arr))                # 3.0
+print("Product:", np.prod(arr))             # 120
+print("Min:", np.min(arr))                  # 1
+print("Max:", np.max(arr))                  # 5
+print("Standard Deviation:", np.std(arr))   # 1.414
+print("Variance:", np.var(arr))             # 2.0
+print("Median:", np.median(arr))            # 3.0
+print("25th Percentile:", np.percentile(arr2, 25))  # 20.0
+print("50th Percentile:", np.percentile(arr2, 50))  # 30.0
+print("75th Percentile:", np.percentile(arr2, 75))  # 40.0
+
+# Correlation and Covariance
+arr3 = np.array([1, 2, 3])
+arr4 = np.array([4, 5, 6])
+print("Correlation Coefficient:\n", np.corrcoef(arr3, arr4))
+# [[1. 1.]
+#  [1. 1.]]
+print("Covariance:\n", np.cov(arr3, arr4))
+# [[1. 1.]
+#  [1. 1.]]
+
+# Random array of shape (2, 3)
+random_arr = np.random.rand(2, 3)
+print(random_arr)
+
+# Random integers
+random_ints = np.random.randint(0, 10, (3, 3))
+print(random_ints)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 List:
 Ordered: Elements maintain insertion order.
 Mutable: Can modify (add, remove, change elements).
