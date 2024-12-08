@@ -2,6 +2,10 @@ In Python, data types are the classification of data items into different catego
 
 Python is a dynamically typed language, meaning that you don't need to declare the type of a variable explicitly. The type is inferred based on the value assigned to it.
 
+In Python, data types are the classification of data items into different categories based on their values and operations that can be performed on them. Each piece of data in Python has a specific data type, which determines what kind of operations can be done on it, as well as how it is stored.
+
+Python is a dynamically typed language, meaning that you don't need to declare the type of a variable explicitly. The type is inferred based on the value assigned to it.
+
 
 
 SMS Spam Collection v.1
