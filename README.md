@@ -1,3 +1,177 @@
+You work for an online store, and you are tasked with processing customer orders. Each order is represented by a dictionary with information about the customer, the items they bought, and the quantities of each item. You need to write a function that processes these orders, calculates the total price for each order, and outputs the most popular items ordered.
+
+Here are the requirements:
+
+Part 1: Calculate the total price of each order. Each item has a price, and you can assume that the prices of items are stored in a dictionary.
+
+Part 2: Find the most popular item across all orders. The most popular item is the one ordered the most times, regardless of how many different customers ordered it.
+
+# Sample data
+orders = [
+    {"customer_id": 1, "items": {"apple": 2, "banana": 3}},
+    {"customer_id": 2, "items": {"apple": 1, "orange": 4}},
+    {"customer_id": 3, "items": {"banana": 1, "apple": 3, "orange": 2}},
+]
+
+item_prices = {
+    "apple": 1.5,
+    "banana": 1.0,
+    "orange": 2.0
+}
+
+def process_orders(orders, item_prices):
+    total_orders = []
+    item_counts = {}
+
+    # Part 1: Calculate total price for each order
+    for order in orders:
+        total_price = 0
+        items = order["items"]
+        for item in items:  # Iterate over the item names (keys)
+            quantity = items[item]  # Access the quantity for each item
+            if item in item_prices:
+                total_price += item_prices[item] * quantity
+
+        total_orders.append({"customer_id": order["customer_id"], "total_price": total_price})
+
+    # Part 2: Find the most popular item
+    for order in orders:
+        items = order["items"]
+        for item in items:  # Iterate over the item names (keys)
+            quantity = items[item]  # Access the quantity for each item
+            if item in item_counts:
+                item_counts[item] += quantity
+            else:
+                item_counts[item] = quantity
+
+    most_popular_item = None
+    max_count = 0
+    for item in item_counts:  # Iterate over the keys (items) in item_counts
+        count = item_counts[item]  # Access the count of each item
+        if count > max_count:
+            most_popular_item = item
+            max_count = count
+
+    return total_orders, most_popular_item
+
+# Call the function and print results
+total_orders, most_popular_item = process_orders(orders, item_prices)
+
+# Output the results
+print("Total Orders:")
+for order in total_orders:
+    print(f"Customer {order['customer_id']} - Total Price: ${order['total_price']:.2f}")
+
+print("\nMost Popular Item:", most_popular_item)
+
+
+
+You have two strings. Write a function to check if the strings are anagrams (contain the same characters in any order).
+def are_anagrams(string1, string2):
+    return set(string1) == set(string2)
+
+
+Scenario: You have a long string representing a document. Write a function that counts the number of times a specific word appears in the string.
+def count_word(document, word):
+    count = 0
+    words = document.split()  # Split the document into a list of words
+    for w in words:
+        if w == word:
+            count += 1
+    return count
+
+# Sample data
+document = "The cat sat on the mat. The cat is happy."
+word = "cat"
+
+# Call function
+print(count_word(document, word))
+document into a list of words using .split()
+
+
+
+
+Scenario: You have a list of names. Write a function that returns a new list with the names in reverse order.
+
+def reverse_list(names):
+    reversed_names = []
+    
+    for i in range(len(names)-1, -1, -1):
+        reversed_names.append(names[i])
+    
+    return reversed_names
+
+# Sample data
+names = ["Alice", "Bob", "Charlie", "David"]
+
+# Call function
+print(reverse_list(names))
+
+
+Scenario: You are given a list of employee records, where each record is a dictionary containing name, department, and salary. Write a function that returns the highest-paid employee in each department.
+
+def highest_paid_per_department(employees):
+    department_salary = {}
+    for employee in employees:
+        department = employee['department']
+        salary = employee['salary']
+        if department not in department_salary or salary > department_salary[department]['salary']:
+            department_salary[department] = employee
+    return department_salary
+
+# Sample data
+employees = [
+    {"name": "Alice", "department": "HR", "salary": 50000},
+    {"name": "Bob", "department": "IT", "salary": 60000},
+    {"name": "Charlie", "department": "HR", "salary": 70000},
+    {"name": "David", "department": "IT", "salary": 80000}
+]
+
+# Call function
+print(highest_paid_per_department(employees))
+
+
+
+Scenario: You have a list of customer reviews where each review is represented as a dictionary with the customer_id, product_id, and rating (1 to 5). Write a function to compute the average rating for each product.
+
+def average_ratings(reviews):
+    product_ratings = {}
+    
+    for review in reviews:
+        product_id = review['product_id']
+        rating = review['rating']
+        
+        # If product_id is already in product_ratings, add the rating
+        if product_id in product_ratings:
+            product_ratings[product_id]['sum'] += rating
+            product_ratings[product_id]['count'] += 1
+        else:
+            product_ratings[product_id] = {'sum': rating, 'count': 1}
+    
+    # Compute average for each product
+    avg_ratings = {}
+    for product_id in product_ratings:
+        sum_ratings = product_ratings[product_id]['sum']
+        count = product_ratings[product_id]['count']
+        avg_ratings[product_id] = sum_ratings / count
+    
+    return avg_ratings
+
+# Sample data
+reviews = [
+    {"customer_id": 1, "product_id": "A", "rating": 4},
+    {"customer_id": 2, "product_id": "B", "rating": 5},
+    {"customer_id": 3, "product_id": "A", "rating": 3},
+    {"customer_id": 4, "product_id": "A", "rating": 5}
+]
+
+# Call function
+print(average_ratings(reviews))
+
+
+
+
+
 Questions and Scenarios
 Scenario: You need to store the scores of 5 students in a test. The scores need to remain unchanged throughout the program. Which data structure will you use and why?
 Answer: Tuple
