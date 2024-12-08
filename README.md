@@ -1,3 +1,45 @@
+Questions and Scenarios
+Scenario: You need to store the scores of 5 students in a test. The scores need to remain unchanged throughout the program. Which data structure will you use and why?
+Answer: Tuple
+Explanation: Tuples are immutable, ensuring the scores can't be accidentally modified.
+
+Scenario: You are tracking the IP addresses of unique visitors to a website. Which data structure will you use and why?
+Answer: Set
+Explanation: Sets store only unique elements, automatically removing duplicates.
+
+Scenario: You are building a shopping cart where you need to store the product names as keys and their quantities as values. Which data structure will you use and why?
+Answer: Dictionary
+Explanation: Dictionaries allow mapping between product names (keys) and quantities (values).
+
+Scenario: You are scheduling tasks that must be performed in a specific order. Which data structure will you use and why?
+Answer: List
+Explanation: Lists maintain the order of elements, making them ideal for ordered tasks.
+
+Scenario: You are creating a menu with fixed options like "Pizza," "Burger," and "Pasta." Which data structure will you use and why?
+Answer: Tuple
+Explanation: Tuples are suitable for fixed, unchanging data like menu options.
+
+Scenario: You are creating a phonebook where names are mapped to phone numbers. Which data structure will you use and why?
+Answer: Dictionary
+Explanation: Dictionaries allow efficient key-value mapping, making lookups fast.
+
+Scenario: You need to store the top 10 scores in a game in descending order. Which data structure will you use and why?
+Answer: List
+Explanation: Lists allow ordered storage and can be sorted to maintain descending order.
+
+Scenario: You have a list of names with duplicates and need a collection of unique names. Which data structure will you use and why?
+Answer: Set
+Explanation: Sets automatically eliminate duplicates.
+
+Scenario: You are implementing a dictionary where each key can have multiple values (e.g., "Python" -> ["Programming", "Language"]). Which data structure will you use and why?
+Answer: Dictionary with lists as values
+Explanation: A dictionary allows mapping, and lists as values can store multiple items per key.
+
+Scenario: You need to store stock prices at different timestamps but must prevent accidental modification of historical data. Which data structure will you use and why?
+Answer: Dictionary with tuples as values
+Explanation: The dictionary can store timestamps as keys, and immutable tuples ensure historical data cannot be changed.
+
+
 map(), filter(), and reduce() in Python
 These are built-in functions in Python used for functional programming. They allow you to apply a function to a sequence or iterable in a concise way. Here's a breakdown:
 
