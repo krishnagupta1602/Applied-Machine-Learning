@@ -1,3 +1,9 @@
+Data structures are used to store and organize data in a way that allows efficient access and modification. Help you organize, store, and manipulate data effectively based on the requirements of your program
+
+Data types are the building blocks for defining a single piece of data, while data structures are ways to organize multiple pieces of data.
+Data types define the nature of data (integer, string, etc.), while data structures define how that data is stored and accessed.
+ Data structures are ways of organizing and storing data to perform operations efficiently, often consisting of collections of data types.
+
 In Python, data types are the classification of data items into different categories based on their values and operations that can be performed on them. Each piece of data in Python has a specific data type, which determines what kind of operations can be done on it, as well as how it is stored.
 
 Python is a dynamically typed language, meaning that you don't need to declare the type of a variable explicitly. The type is inferred based on the value assigned to it.
