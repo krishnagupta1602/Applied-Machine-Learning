@@ -1,3 +1,7 @@
+pip install urllib3<1.25,>=1.21.1
+
+
+
 Data structures are used to store and organize data in a way that allows efficient access and modification. Help you organize, store, and manipulate data effectively based on the requirements of your program
 
 Data types are the building blocks for defining a single piece of data, while data structures are ways to organize multiple pieces of data.
