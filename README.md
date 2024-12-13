@@ -1,4 +1,28 @@
-pip install urllib3<1.25,>=1.21.1
+{
+    "miniconda_activation_script": "C:\\path\\to\\your\\miniconda\\Scripts\\activate.bat",
+    "python_exe": "C:\\path\\to\\your\\miniconda\\envs\\your_env_name\\python.exe",
+    "python_script": "C:\\path\\to\\your\\python_script.py"
+}
+
+
+@echo off
+powershell -ExecutionPolicy Bypass -Command "
+    $json = Get-Content paths.json | ConvertFrom-Json
+    $env:MINICONDA_ACTIVATION_SCRIPT = $json.miniconda_activation_script
+    $env:PYTHON_EXE = $json.python_exe
+    $env:PYTHON_SCRIPT = $json.python_script
+"
+
+%MINICONDA_ACTIVATION_SCRIPT% your_env_name
+%PYTHON_EXE% %PYTHON_SCRIPT%
+
+
+
+
+
+
+
+ip install urllib3<1.25,>=1.21.1
 
 
 
