@@ -1,3 +1,32 @@
+
+
+Subject: Resignation Notification
+
+Dear [Manager's Name],
+
+I hope this email finds you well. Following our discussion, I am writing to formally resign from my position at [Company Name]. My last working day will be [Last Working Day, based on notice period].
+
+Thank you for all the support and opportunities I have received during my time here. I am committed to ensuring a smooth transition and will do my best to complete any pending tasks or assist with the handover process.
+
+Wishing the team continued success.
+
+Best regards,
+[Your Full Name]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 {
     "miniconda_activation_script": "C:\\path\\to\\your\\miniconda\\Scripts\\activate.bat",
     "python_exe": "C:\\path\\to\\your\\miniconda\\envs\\your_env_name\\python.exe",
