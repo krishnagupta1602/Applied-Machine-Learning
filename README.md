@@ -1,3 +1,17 @@
+import pandas as pd
+
+# Sample data with date and time
+data = {'datetime': ['2025-01-24 15:30:00', '2025-02-01 08:00:00', '2025-03-15 22:45:00']}
+df = pd.DataFrame(data)
+
+# Convert to datetime and extract only the date
+df['date_only'] = pd.to_datetime(df['datetime']).dt.date
+
+print(df)
+
+
+
+
 =TRIM(MID(A1,FIND(", ",A1)+2,LEN(A1))) & " " & LEFT(A1,FIND(", ",A1)-1)
 
 
