@@ -1,3 +1,58 @@
+Steps of Hypothesis Testing (Simplified)
+1️⃣ State the Hypotheses:
+
+Null Hypothesis (H₀): The default assumption (e.g., "A coin is fair").
+Alternative Hypothesis (H₁): What we want to test (e.g., "The coin is biased").
+2️⃣ Choose a Significance Level (α):
+
+Set how much risk of error we allow (e.g., α = 0.05 or 5%).
+3️⃣ Collect Data & Perform the Experiment:
+
+Flip the coin 100 times and record how many times it lands on heads.
+4️⃣ Find the p-value:
+
+Compare the observed result (e.g., 70 heads out of 100) with what we expect if H₀ is true (50 heads out of 100).
+5️⃣ Make a Decision:
+
+If the p-value is small (p < 0.05), reject H₀ (coin is biased).
+If p ≥ 0.05, fail to reject H₀ (not enough evidence to say it’s biased).
+Example: Testing If a Coin Is Fair
+Step 1: State Hypotheses
+
+H₀: The coin is fair (50% heads, 50% tails).
+H₁: The coin is biased (not 50-50).
+Step 2: Choose α
+
+Set α = 0.05 (5% risk of wrongly rejecting H₀).
+Step 3: Collect Data
+
+Flip the coin 100 times → Suppose we get 70 heads.
+Step 4: Find p-value
+
+If getting 70 heads out of 100 is very unlikely under a fair coin, p-value will be low.
+Step 5: Make a Decision
+
+If p < 0.05, we reject H₀ and conclude the coin is likely biased.
+If p ≥ 0.05, we fail to reject H₀—no strong evidence the coin is unfair.
+🎯 Easy takeaway: Hypothesis testing helps decide if an observation is due to chance or a real effect!
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 Standardization & Normalization
 
 Standardization: Rescales data to have mean = 0 and variance = 1, making it suitable for algorithms that assume normally distributed inputs (e.g., linear regression, PCA).
