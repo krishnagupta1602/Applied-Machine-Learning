@@ -1,3 +1,94 @@
+Standardization & Normalization
+
+Standardization: Rescales data to have mean = 0 and variance = 1, making it suitable for algorithms that assume normally distributed inputs (e.g., linear regression, PCA).
+𝑧
+=
+𝑥
+−
+𝜇
+𝜎
+z= 
+σ
+x−μ
+
+ 
+Normalization (Min-Max Scaling): Rescales values between 0 and 1 to ensure equal feature importance in distance-based models (e.g., KNN, SVM).
+𝑥
+′
+=
+𝑥
+−
+min
+⁡
+(
+𝑥
+)
+max
+⁡
+(
+𝑥
+)
+−
+min
+⁡
+(
+𝑥
+)
+x 
+′
+ = 
+max(x)−min(x)
+x−min(x)
+
+ 
+Handling Missing Values (Imputation)
+
+Mean/Median Imputation: Replace missing values with the column’s mean or median (best for numerical data).
+Mode Imputation: Use the most frequent value for categorical features.
+Forward/Backward Fill: Use previous or next values (time series data).
+Feature Selection
+
+Removes irrelevant or redundant features to improve model efficiency.
+Basic methods:
+Correlation analysis: Remove highly correlated features.
+Low variance removal: Drop columns with almost constant values.
+Chi-Square test (for categorical data).
+Checking Data Distribution
+
+Use histograms, box plots, or skewness/kurtosis to understand the shape of numerical data.
+If data is skewed, apply log transformation to make it more normal.
+Avoiding Data Leakage
+
+Ensure test data is never used during training, even in feature engineering.
+Always split data before applying transformations like scaling or imputation.
+Dealing with Categorical Data
+
+One-Hot Encoding: Convert categorical variables into binary columns (best for unordered categories).
+Label Encoding: Assign numerical labels to categories (best for ordinal data like "low", "medium", "high").
+Handling Outliers
+
+Use z-score (>3 or <-3) or IQR (values outside Q1 - 1.5×IQR and Q3 + 1.5×IQR) to detect outliers.
+Outliers can be removed, clipped, or transformed (e.g., log transformation).
+Feature Scaling Before Distance-Based Models
+
+Scaling (normalization or standardization) is essential for KNN, SVM, PCA, and neural networks, as these models are sensitive to feature magnitude.
+Train-Test Split Properly
+
+Always split the dataset before any preprocessing (e.g., standardization, imputation) to prevent data leakage.
+Common split: 80% training, 20% testing or 70%-30%.
+Checking Class Imbalance
+
+If one class dominates, the model may be biased.
+Use stratified sampling during train-test split to maintain the class ratio.
+Consider oversampling (SMOTE), undersampling, or class-weight adjustment in case of severe imbalance.
+
+
+
+
+
+
+
+
 import pandas as pd
 
 # Sample data with date and time
