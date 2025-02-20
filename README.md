@@ -1,3 +1,23 @@
+
+Steps of Hypothesis Testing
+1️⃣ State the Hypotheses (H₀ & H₁):
+
+Define the null hypothesis (H₀) (assumed true) and the alternative hypothesis (H₁) (what you want to prove).
+2️⃣ Choose a Significance Level (α):
+
+Decide the probability of rejecting H₀ when it’s actually true (common choice: α = 0.05).
+3️⃣ Select the Test & Compute the Test Statistic:
+
+Choose a statistical test (e.g., t-test, chi-square test) based on the data and calculate the test statistic.
+4️⃣ Find the p-value:
+
+The p-value tells us the probability of observing the data if H₀ were true.
+5️⃣ Compare p-value with α & Make a Decision:
+
+If p < α, reject H₀ (evidence supports H₁).
+If p ≥ α, fail to reject H₀ (not enough evidence).
+
+
 1️⃣ State the Hypotheses:
 
 Null Hypothesis (H₀): The default assumption (e.g., "A coin is fair").
@@ -33,23 +53,23 @@ Z=
 n
 p 
 0
-​
+
  (1−p 
 0
-​
+
  )
-​
+
  
-​
+
  
 p
 ^
-​
+
  −p 
 0
-​
+
  
-​
+
  
 Where:
 
@@ -57,13 +77,13 @@ Where:
 ^
 p
 ^
-​
+
   = observed proportion (70/100 = 0.7)
 𝑝
 0
 p 
 0
-​
+
   = expected proportion (0.5 for a fair coin)
 𝑛
 n = number of trials (100)
@@ -100,75 +120,9 @@ If p ≥ 0.05, fail to reject H₀ → no strong evidence of bias.
 
 
 
-Steps of Hypothesis Testing
-1️⃣ State the Hypotheses (H₀ & H₁):
-
-Define the null hypothesis (H₀) (assumed true) and the alternative hypothesis (H₁) (what you want to prove).
-2️⃣ Choose a Significance Level (α):
-
-Decide the probability of rejecting H₀ when it’s actually true (common choice: α = 0.05).
-3️⃣ Select the Test & Compute the Test Statistic:
-
-Choose a statistical test (e.g., t-test, chi-square test) based on the data and calculate the test statistic.
-4️⃣ Find the p-value:
-
-The p-value tells us the probability of observing the data if H₀ were true.
-5️⃣ Compare p-value with α & Make a Decision:
-
-If p < α, reject H₀ (evidence supports H₁).
-If p ≥ α, fail to reject H₀ (not enough evidence).
 
 
-
-
-Steps of Hypothesis Testing (Simplified)
-1️⃣ State the Hypotheses:
-
-Null Hypothesis (H₀): The default assumption (e.g., "A coin is fair").
-Alternative Hypothesis (H₁): What we want to test (e.g., "The coin is biased").
-2️⃣ Choose a Significance Level (α):
-
-Set how much risk of error we allow (e.g., α = 0.05 or 5%).
-3️⃣ Collect Data & Perform the Experiment:
-
-Flip the coin 100 times and record how many times it lands on heads.
-4️⃣ Find the p-value:
-
-Compare the observed result (e.g., 70 heads out of 100) with what we expect if H₀ is true (50 heads out of 100).
-5️⃣ Make a Decision:
-
-If the p-value is small (p < 0.05), reject H₀ (coin is biased).
-If p ≥ 0.05, fail to reject H₀ (not enough evidence to say it’s biased).
-Example: Testing If a Coin Is Fair
-Step 1: State Hypotheses
-
-H₀: The coin is fair (50% heads, 50% tails).
-H₁: The coin is biased (not 50-50).
-Step 2: Choose α
-
-Set α = 0.05 (5% risk of wrongly rejecting H₀).
-Step 3: Collect Data
-
-Flip the coin 100 times → Suppose we get 70 heads.
-Step 4: Find p-value
-
-If getting 70 heads out of 100 is very unlikely under a fair coin, p-value will be low.
-Step 5: Make a Decision
-
-If p < 0.05, we reject H₀ and conclude the coin is likely biased.
-If p ≥ 0.05, we fail to reject H₀—no strong evidence the coin is unfair.
-🎯 Easy takeaway: Hypothesis testing helps decide if an observation is due to chance or a real effect!
-
-
-
-
-
-
-
-
-
-
-
+Use a test statistic to measure how far the observed result (e.g., 70 heads) is from the expecte
 
 
 
@@ -220,8 +174,7 @@ x−min(x)
 
  
 Handling Missing Values (Imputation)
-
-Mean/Median Imputation: Replace missing values with the column’s mean or median (best for numerical data).
+es with the column’s mean or median (best for numerical data).
 Mode Imputation: Use the most frequent value for categorical features.
 Forward/Backward Fill: Use previous or next values (time series data).
 Feature Selection
