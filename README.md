@@ -1,3 +1,17 @@
+As I wrap up my journey at [Company Name], I just wanted to take a moment to express my heartfelt gratitude to each one of you. Working with this amazing team has been an incredible experience, and I truly appreciate all the support, collaboration, and great memories we've shared.
+
+I have learned so much during my time here, and I will always cherish the friendships and experiences that have shaped my journey. While I am moving on to new opportunities, I will definitely miss being part of this fantastic team.
+
+Please feel free to stay in touch – you can reach me at [Your Personal Email/LinkedIn]. Wishing you all continued success and hoping our paths cross again in the future!
+
+Best regards,
+[Your Name]
+
+
+
+
+
+
 
 Steps of Hypothesis Testing
 1️⃣ State the Hypotheses (H₀ & H₁):
