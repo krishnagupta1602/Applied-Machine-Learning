@@ -1,3 +1,22 @@
+
+Subject: Thank You for Your Support & Guidance
+
+Dear [Manager’s Name] & [Manager’s Manager’s Name],
+
+As I wrap up my journey at [Company Name], I want to take a moment to express my sincere gratitude to both of you. It has been an incredible experience working under your leadership, and I truly appreciate the guidance, trust, and opportunities I’ve had during my time here.
+
+Your support has played a key role in my professional growth, and I am grateful for the valuable lessons and insights I’ve gained. The experience and knowledge I take with me will undoubtedly help me in my future endeavors.
+
+Thank you once again for everything. I look forward to staying in touch, and I wish you and the team continued success!
+
+Best regards,
+[Your Name]
+
+
+
+
+
+
 As I wrap up my journey at [Company Name], I just wanted to take a moment to express my heartfelt gratitude to each one of you. Working with this amazing team has been an incredible experience, and I truly appreciate all the support, collaboration, and great memories we've shared.
 
 I have learned so much during my time here, and I will always cherish the friendships and experiences that have shaped my journey. While I am moving on to new opportunities, I will definitely miss being part of this fantastic team.
