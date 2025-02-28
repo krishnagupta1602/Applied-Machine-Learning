@@ -1,3 +1,17 @@
+
+Subject: Not Spamming… Just a Special Thank You!
+
+Dear [Manager’s Name],
+
+I didn’t want to clutter your inbox, but I genuinely felt the need to thank you separately for everything. Your guidance and support have been invaluable, and I truly appreciate the opportunities and trust you’ve given me during my time at [Company Name].
+
+Beyond the work, I’ll never forget the incredible team spirit—and of course, all the legendary parties! From [mention a funny party moment, if applicable] to ensuring the "fun quota" was always met, those moments will be just as memorable as the professional lessons I’ve learned here. I still believe we deserve an award for "Best Team Bonding Through Food & Drinks"! 😆
+
+Thank you again for everything. Wishing you and the team continued success, and let’s definitely stay in touch (especially if there’s another party)!
+
+Best regards,
+
+
 Subject: A Heartfelt Thank You
 
 Dear [Manager’s Name],
