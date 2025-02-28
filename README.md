@@ -1,4 +1,8 @@
 
+linkedin.com/in/krishna-gupta-307724117
+
+
+
 Subject: Thank You for Your Support & Guidance
 
 Dear [Manager’s Name] & [Manager’s Manager’s Name],
