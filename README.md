@@ -1,4 +1,15 @@
+Subject: A Heartfelt Thank You
 
+Dear [Manager’s Name],
+
+I didn’t want to spam your inbox, but I felt a genuine need to thank you separately for everything you’ve done for me during my time at [Company Name]. Your guidance, support, and leadership have truly made a difference in my journey, and I’m incredibly grateful for the opportunities and learning experiences I’ve had under your mentorship.
+
+Beyond the work, I’ll always remember the amazing team spirit, the countless laughs, and of course, all the fantastic parties! Those memories will stay with me just as much as the professional lessons I’ve learned here.
+
+Thank you once again for your trust and encouragement. Wishing you and the team continued success, and I hope we stay in touch!
+
+Best regards,
+[Your Name]
 linkedin.com/in/krishna-gupta-307724117
 
 
